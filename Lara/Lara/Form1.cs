@@ -25,35 +25,35 @@ namespace Lara
         {
             OpenGL gL = openGLControl1.OpenGL;
             gL.PolygonMode(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_LINE);
-            gL.Color(1f, 1f, 1f);
             gL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
 
-            
 
-            //Лицо Лары по XY
+            //Голова Лары по XY
             gL.LoadIdentity();
-            gL.Translate(-1.5f, 1.0f, -6.0f);
+            gL.Translate(-1.5f, 0.9f, -6.0f);
             gL.Rotate(0.0, 0.0f, 1.0f, 0.0f);
             DrawLaraFace(gL);//*/
 
-            //Лицо Лары по YZ
+            //Голова Лары по YZ
             gL.LoadIdentity();
-            gL.Translate(-1.5f, -1.0f, -6.0f);
+            gL.Translate(-1.5f, -1.1f, -6.0f);
             gL.Rotate(90, 0.0f, 1.0f, 0.0f);
             DrawLaraFace(gL);//*/
 
-            //Лицо Лары вращается
+            //Голова Лары вращается
             gL.LoadIdentity();
             gL.Translate(1.0f, 0.0f, -6.0f);
             gL.Rotate(rotateAngle, 0.0f, 1.0f, 0.0f);
             DrawLaraFace(gL);
+            
 
 
+            rotateAngle += 1f;
+        }
 
-
-
-
-            rotateAngle += 3f;
+        private void DrawLaraHair(OpenGL gL)
+        {
+            throw new NotImplementedException();
         }
 
         private void DrawLaraFace(OpenGL gL)
@@ -83,13 +83,8 @@ namespace Lara
             float[] faceLowerPoint = new float[] { 0.0f, -0.4f, 0.8f }; //Низ центра лица
 
 
-
-            ///Точки для волос///
-            //float[] 
-
-
-
-
+            //Отрисовка лица
+            gL.Color(1f, 1f, 0f);
             gL.Begin(OpenGL.GL_QUADS);  // Деталь 1
                     gL.Vertex(rightCheeckFarPoint[0], rightCheeckFarPoint[1], rightCheeckFarPoint[2]);
                     gL.Vertex(rightFarLowerCheek[0], rightFarLowerCheek[1], rightFarLowerCheek[2]);
@@ -138,6 +133,64 @@ namespace Lara
                     gL.Vertex(lowerCenterOfForehead[0], lowerCenterOfForehead[1], lowerCenterOfForehead[2]);
                     gL.Vertex(highCenterOfForehead[0], highCenterOfForehead[1], highCenterOfForehead[2]);
                     gL.Vertex(leftForeheadRightHightPoint[0], leftForeheadRightHightPoint[1], leftForeheadRightHightPoint[2]);
+            gL.End();
+
+
+
+
+
+            ///Точки для волос///
+            ///Волосы будут сделаны в 3 "недокольца"///
+            ///1-ое кольцо над лбом///
+            ///2-ое кольцо - самое большое, проходит через щёчки//
+            ///3-ье кольцо - малое дальнее кольцо///
+            float[] rightUpperPointOfTriangleAboveForehead = new float[] { -0.175f, 1.45f, 0.35f }; //Верхняя точка треугольника над лбом
+            float[] leftUpperPointOfTriangleAboveForehead = new float[] { 0.175f, 1.45f, 0.35f };
+
+            //Точки полигона 2-го (самого большого) кольца. Первая точка - низ правой дальней щеки.
+            float[][] secondRing = {
+                new float[] { rightFarLowerCheek[0] - 0.2f, rightFarLowerCheek[1], rightFarLowerCheek[2] - 0.2f }, //secondRing[0]
+                new float[] { rightCheeckFarPoint[0] - 0.2f, rightCheeckFarPoint[1], rightCheeckFarPoint[2] - 0.2f },   //secondRing[1]
+                new float[] { rightCheeckFarPoint[0], rightCheeckFarPoint[1] + 0.5f, rightCheeckFarPoint[2] },  //secondRing[2]
+                new float[] { rightUpperPointOfTriangleAboveForehead[0], rightUpperPointOfTriangleAboveForehead[1], rightCheeckFarPoint[2] },   //secondRing[3]
+                new float[] { highCenterOfForehead[0], highCenterOfForehead[1], rightCheeckFarPoint[2] },   //secondRing[4]
+                new float[] { leftUpperPointOfTriangleAboveForehead[0], leftUpperPointOfTriangleAboveForehead[1], leftCheeckFarPoint[2] },  //secondRing[5]
+                new float[] { leftCheeckFarPoint[0], leftCheeckFarPoint[1] + 0.5f, leftCheeckFarPoint[2] }, //secondRing[6]
+                new float[] { leftCheeckFarPoint[0] + 0.2f, leftCheeckFarPoint[1], leftCheeckFarPoint[2] - 0.2f },  //secondRing[7]
+                new float[] { leftFarLowerCheek[0] + 0.2f, leftFarLowerCheek[1], leftFarLowerCheek[2] - 0.2f }, //secondRing[8]
+                new float[] { leftFarLowerCheek[0] + 0.1f, leftFarLowerCheek[1] - 0.5f, leftFarLowerCheek[2] - 0.2f },  //secondRing[9]
+                new float[] { rightFarLowerCheek[0] - 0.1f, rightFarLowerCheek[1] - 0.5f, rightFarLowerCheek[2] - 0.2f },   //secondRing[10]
+            };
+
+            //Полигон, соединяющий 1-ое кольцо и 2-ое
+            float[][] quadStripConnecting1stRingAnd2nd = {
+                secondRing[0], rightFarLowerCheek, secondRing[1], rightCheeckFarPoint, secondRing[2], rightForeheadRightHightPoint,
+                secondRing[3] , rightUpperPointOfTriangleAboveForehead, secondRing[4], highCenterOfForehead, secondRing[5],
+                leftUpperPointOfTriangleAboveForehead, secondRing[6], leftForeheadRightHightPoint, secondRing[7],
+                leftCheeckFarPoint, secondRing[8], leftFarLowerCheek
+            };
+
+
+
+            //Отрисовка волос
+            gL.Color(1f, 1f, 1f);
+            gL.Begin(OpenGL.GL_TRIANGLES);  //Правый треугольник над лбом
+                    gL.Vertex(rightForeheadRightHightPoint[0], rightForeheadRightHightPoint[1], rightForeheadRightHightPoint[2]);
+                    gL.Vertex(highCenterOfForehead[0], highCenterOfForehead[1], highCenterOfForehead[2]);
+                    gL.Vertex(rightUpperPointOfTriangleAboveForehead[0], rightUpperPointOfTriangleAboveForehead[1], rightUpperPointOfTriangleAboveForehead[2]);
+            gL.End();
+            gL.Begin(OpenGL.GL_TRIANGLES);  //Левый треугольник над лбом
+                    gL.Vertex(leftForeheadRightHightPoint[0], leftForeheadRightHightPoint[1], leftForeheadRightHightPoint[2]);
+                    gL.Vertex(highCenterOfForehead[0], highCenterOfForehead[1], highCenterOfForehead[2]);
+                    gL.Vertex(leftUpperPointOfTriangleAboveForehead[0], leftUpperPointOfTriangleAboveForehead[1], leftForeheadRightHightPoint[2]);
+            gL.End();
+            gL.Begin(OpenGL.GL_POLYGON); //Точки полигона 2-го (самого большого) кольца. Первая точка - низ правой дальней щеки.
+                foreach (var vertex in secondRing)
+                        gL.Vertex(vertex[0], vertex[1], vertex[2]);
+            gL.End();//*/
+            gL.Begin(OpenGL.GL_QUAD_STRIP); //Полигон, соединяющий 1-ое кольцо и 2-ое
+                foreach (var vertex in quadStripConnecting1stRingAnd2nd)
+                    gL.Vertex(vertex[0], vertex[1], vertex[2]);
             gL.End();
         }
     }
