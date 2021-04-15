@@ -134,6 +134,16 @@ namespace Lara
                     gL.Vertex(highCenterOfForehead[0], highCenterOfForehead[1], highCenterOfForehead[2]);
                     gL.Vertex(leftForeheadRightHightPoint[0], leftForeheadRightHightPoint[1], leftForeheadRightHightPoint[2]);
             gL.End();
+            gL.Begin(OpenGL.GL_TRIANGLES); // Правый маленький треугольник возле виска
+                    gL.Vertex(rightCheeckFarPoint[0], rightCheeckFarPoint[1], rightCheeckFarPoint[2]);
+                    gL.Vertex(rightTempleAndForehead[0], rightTempleAndForehead[1], rightTempleAndForehead[2]);
+                    gL.Vertex(rightForeheadRightHightPoint[0], rightForeheadRightHightPoint[1], rightForeheadRightHightPoint[2]);
+            gL.End();
+            gL.Begin(OpenGL.GL_TRIANGLES);  // Левый маленький треугольник возле виска
+                    gL.Vertex(leftCheeckFarPoint[0], leftCheeckFarPoint[1], leftCheeckFarPoint[2]);
+                    gL.Vertex(leftTempleAndForehead[0], leftTempleAndForehead[1], leftTempleAndForehead[2]);
+                    gL.Vertex(leftForeheadRightHightPoint[0], leftForeheadRightHightPoint[1], leftForeheadRightHightPoint[2]);
+            gL.End();
 
 
 
@@ -185,12 +195,28 @@ namespace Lara
                     gL.Vertex(leftUpperPointOfTriangleAboveForehead[0], leftUpperPointOfTriangleAboveForehead[1], leftForeheadRightHightPoint[2]);
             gL.End();
             gL.Begin(OpenGL.GL_POLYGON); //Точки полигона 2-го (самого большого) кольца. Первая точка - низ правой дальней щеки.
-                foreach (var vertex in secondRing)
-                        gL.Vertex(vertex[0], vertex[1], vertex[2]);
+                    foreach (var vertex in secondRing)
+                            gL.Vertex(vertex[0], vertex[1], vertex[2]);
             gL.End();//*/
-            gL.Begin(OpenGL.GL_QUAD_STRIP); //Полигон, соединяющий 1-ое кольцо и 2-ое
-                foreach (var vertex in quadStripConnecting1stRingAnd2nd)
-                    gL.Vertex(vertex[0], vertex[1], vertex[2]);
+            gL.Begin(OpenGL.GL_QUAD_STRIP); //Полигон, соединяющий 1-ое кольцо и 2-ое (Ну почти до конца)
+                    foreach (var vertex in quadStripConnecting1stRingAnd2nd)
+                        gL.Vertex(vertex[0], vertex[1], vertex[2]);
+            gL.End();
+            gL.Begin(OpenGL.GL_QUADS); //Квадрат между нижними щёчками и нижней чертой 2-ого кольца волос
+                    gL.Vertex(secondRing[9][0], secondRing[9][1], secondRing[9][2]);
+                    gL.Vertex(secondRing[10][0], secondRing[10][1], secondRing[10][2]);
+                    gL.Vertex(rightFarLowerCheek[0], rightFarLowerCheek[1], rightFarLowerCheek[2]);
+                    gL.Vertex(leftFarLowerCheek[0], leftFarLowerCheek[1], leftFarLowerCheek[2]);
+            gL.End();
+            gL.Begin(OpenGL.GL_TRIANGLES);
+                    gL.Vertex(secondRing[10][0], secondRing[10][1], secondRing[10][2]);
+                    gL.Vertex(secondRing[0][0], secondRing[0][1], secondRing[0][2]);
+                    gL.Vertex(rightFarLowerCheek[0], rightFarLowerCheek[1], rightFarLowerCheek[2]);
+            gL.End();
+            gL.Begin(OpenGL.GL_TRIANGLES);
+                    gL.Vertex(secondRing[8][0], secondRing[8][1], secondRing[8][2]);
+                    gL.Vertex(secondRing[9][0], secondRing[9][1], secondRing[9][2]);
+                    gL.Vertex(leftFarLowerCheek[0], leftFarLowerCheek[1], leftFarLowerCheek[2]);
             gL.End();
         }
     }
