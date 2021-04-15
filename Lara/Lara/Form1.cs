@@ -36,7 +36,7 @@ namespace Lara
 
             //Голова Лары по YZ
             gL.LoadIdentity();
-            gL.Translate(-1.5f, -1.1f, -6.0f);
+            gL.Translate(-1.5f, -1.4f, -6.0f);
             gL.Rotate(90, 0.0f, 1.0f, 0.0f);
             DrawLaraFace(gL);//*/
 
@@ -180,6 +180,28 @@ namespace Lara
                 leftCheeckFarPoint, secondRing[8], leftFarLowerCheek
             };
 
+            //Точки полигона 3-го кольца. Это кольцо отталкивается от 2-го кольца
+            float[][] thirdRing = {
+                new float[] { secondRing[0][0] + 0.2f, secondRing[0][1] - 0.1f, secondRing[0][2] - 0.4f },
+                new float[] { secondRing[1][0] + 0.2f, secondRing[1][1] - 0.1f, secondRing[1][2] - 0.4f },
+                new float[] { secondRing[2][0] + 0.2f, secondRing[2][1] - 0.1f, secondRing[2][2] - 0.4f },
+                new float[] { secondRing[3][0] + 0.05f, secondRing[3][1] - 0.1f, secondRing[3][2] - 0.2f },
+                new float[] { secondRing[4][0], secondRing[4][1] - 0.1f, secondRing[4][2] - 0.4f },
+                new float[] { secondRing[5][0] - 0.05f, secondRing[5][1] - 0.1f, secondRing[5][2] - 0.2f },
+                new float[] { secondRing[6][0] - 0.2f, secondRing[6][1] - 0.1f, secondRing[6][2] - 0.4f },
+                new float[] { secondRing[7][0] - 0.2f, secondRing[7][1] - 0.1f, secondRing[7][2] - 0.4f },
+                new float[] { secondRing[8][0] - 0.2f, secondRing[8][1] - 0.1f, secondRing[8][2] - 0.4f },
+                new float[] { secondRing[9][0] - 0.2f, secondRing[9][1] - 0.1f, secondRing[9][2] - 0.2f },
+                new float[] { secondRing[10][0] + 0.2f, secondRing[10][1] - 0.1f, secondRing[10][2] - 0.2f },
+            };
+
+            //Полигон, соединяющий 2-ое кольцо и 3-ье
+            float[][] quadStripConnecting2ndRingAnd3rd = {
+                secondRing[0], thirdRing[0], secondRing[1], thirdRing[1], secondRing[2], thirdRing[2], secondRing[3], thirdRing[3],
+                secondRing[4], thirdRing[4], secondRing[5], thirdRing[5], secondRing[6], thirdRing[6], secondRing[7], thirdRing[7],
+                secondRing[8], thirdRing[8], secondRing[9], thirdRing[9], secondRing[10], thirdRing[10], secondRing[0], thirdRing[0]
+            };
+
 
 
             //Отрисовка волос
@@ -197,7 +219,7 @@ namespace Lara
             gL.Begin(OpenGL.GL_POLYGON); //Точки полигона 2-го (самого большого) кольца. Первая точка - низ правой дальней щеки.
                     foreach (var vertex in secondRing)
                             gL.Vertex(vertex[0], vertex[1], vertex[2]);
-            gL.End();//*/
+            gL.End();
             gL.Begin(OpenGL.GL_QUAD_STRIP); //Полигон, соединяющий 1-ое кольцо и 2-ое (Ну почти до конца)
                     foreach (var vertex in quadStripConnecting1stRingAnd2nd)
                         gL.Vertex(vertex[0], vertex[1], vertex[2]);
@@ -208,15 +230,22 @@ namespace Lara
                     gL.Vertex(rightFarLowerCheek[0], rightFarLowerCheek[1], rightFarLowerCheek[2]);
                     gL.Vertex(leftFarLowerCheek[0], leftFarLowerCheek[1], leftFarLowerCheek[2]);
             gL.End();
-            gL.Begin(OpenGL.GL_TRIANGLES);
+            gL.Begin(OpenGL.GL_TRIANGLES); //Маленький треугольник справа между 1-ым и 2-ым кольцом волос внизу
                     gL.Vertex(secondRing[10][0], secondRing[10][1], secondRing[10][2]);
                     gL.Vertex(secondRing[0][0], secondRing[0][1], secondRing[0][2]);
                     gL.Vertex(rightFarLowerCheek[0], rightFarLowerCheek[1], rightFarLowerCheek[2]);
             gL.End();
-            gL.Begin(OpenGL.GL_TRIANGLES);
+            gL.Begin(OpenGL.GL_TRIANGLES); //Маленький треугольник слева между 1-ым и 2-ым кольцом волос внизу
                     gL.Vertex(secondRing[8][0], secondRing[8][1], secondRing[8][2]);
                     gL.Vertex(secondRing[9][0], secondRing[9][1], secondRing[9][2]);
                     gL.Vertex(leftFarLowerCheek[0], leftFarLowerCheek[1], leftFarLowerCheek[2]);
+            gL.End();
+            gL.Begin(OpenGL.GL_POLYGON); //Точки полигона 3-го кольца
+                    foreach (var vertex in thirdRing)
+                        gL.Vertex(vertex[0], vertex[1], vertex[2]);
+            gL.End(); gL.Begin(OpenGL.GL_QUAD_STRIP); //Полигон, соединяющий 2-ое кольцо и 3-ье
+                    foreach (var vertex in quadStripConnecting2ndRingAnd3rd)
+                        gL.Vertex(vertex[0], vertex[1], vertex[2]);
             gL.End();
         }
     }
