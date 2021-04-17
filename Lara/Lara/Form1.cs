@@ -68,16 +68,15 @@ namespace Lara
         private void DrawLaraNeckAndTorso(OpenGL gL)    //Зарисовка есть в блокноте на стр.52
         {
             ///Общие точки///
+            ///Шея
             float[] farTopPointOfRightSideOfNeck = new float[] { -0.2f, 0.0f, -0.2f };    //Дальняя верхняя правая точка шеи
             float[] nearTopPointOfRightSideOfNeck = new float[] { -0.2f, 0.0f, 0.2f };    //Ближняя верхняя правая точка шеи
             float[] farTopPointOfLeftSideOfNeck = new float[] { 0.2f, 0.0f, -0.2f };    //Дальняя верхняя левая точка шеи
             float[] nearTopPointOfLeftSideOfNeck = new float[] { 0.2f, 0.0f, 0.2f };    //Ближняя верхняя левая точка шеи
-
-            float[] farBottomPointOfRightSideOfNeck = new float[] { -0.3f, -0.8f, -0.3f };    //Дальняя верхняя правая точка шеи
-            float[] nearBottomPointOfRightSideOfNeck = new float[] { -0.3f, -0.8f, 0.3f };    //Ближняя верхняя правая точка шеи
-            float[] farBottomPointOfLeftSideOfNeck = new float[] { 0.3f, -0.8f, -0.3f };    //Дальняя верхняя левая точка шеи
-            float[] nearBottomPointOfLeftSideOfNeck = new float[] { 0.3f, -0.8f, 0.3f };    //Ближняя верхняя левая точка шеи
-
+            float[] farBottomPointOfRightSideOfNeck = new float[] { -0.3f, -0.8f, -0.3f };    //Дальняя нижняя правая точка шеи
+            float[] nearBottomPointOfRightSideOfNeck = new float[] { -0.3f, -0.8f, 0.3f };    //Ближняя нижняя правая точка шеи
+            float[] farBottomPointOfLeftSideOfNeck = new float[] { 0.3f, -0.8f, -0.3f };    //Дальняя нижняя левая точка шеи
+            float[] nearBottomPointOfLeftSideOfNeck = new float[] { 0.3f, -0.8f, 0.3f };    //Ближняя нижняя левая точка шеи
 
 
             gL.Color(1f, 1f, 0f);
@@ -105,6 +104,68 @@ namespace Lara
                     gL.Vertex(nearTopPointOfRightSideOfNeck[0], nearTopPointOfRightSideOfNeck[1], nearTopPointOfRightSideOfNeck[2]);
                     gL.Vertex(nearBottomPointOfRightSideOfNeck[0], nearBottomPointOfRightSideOfNeck[1], nearBottomPointOfRightSideOfNeck[2]);
             gL.End();
+
+
+
+
+
+
+
+            ///Торс
+            ///
+            ///Плечи
+            float[] farRightShoulder = new float[] { -1.1f, -0.8f, -0.4f };
+            float[] nearRightShoulder = new float[] { -1.1f, -0.8f, 0.4f };
+            float[] farLeftShoulder = new float[] { 1.1f, -0.8f, -0.4f };
+            float[] nearLeftShoulder = new float[] { 1.1f, -0.8f, 0.4f };
+            ///
+            ///Грудь
+            float[] rightChest = new float[] { -1.1f, -1.6f, 1.3f };
+            float[] leftChest = new float[] { 1.1f, -1.6f, 1.3f };
+            ///
+            ///Низ грудной клетки
+            float[] nearRightLowerChest = new float[] { -1.1f, -2.1f, 0.4f };
+            float[] farRightLowerChest = new float[] { -1.1f, -2f, -0.5f };
+            float[] nearLeftLowerChest = new float[] { 1.1f, -2.1f, 0.4f };
+            float[] farLeftLowerChest = new float[] { 1.1f, -2f, -0.5f };
+            ///
+            ///Впуклость талии
+            float[] nearRightLowerWaist = new float[] { -0.9f, -2.9f, 0.15f };
+            float[] farRightLowerWaist = new float[] { -0.9f, -2.9f, -0.3f };
+            float[] nearLeftLowerWaist = new float[] { 0.9f, -2.9f, 0.15f };
+            float[] farLeftLowerWaist = new float[] { 0.9f, -2.9f, -0.3f };
+            ///
+            ///Верх таза
+            float[] nearRightTopOfPelvis = new float[] { -1.1f, -3.5f, 0.4f };
+            float[] farRightTopOfPelvis = new float[] { -1.1f, -3.5f, -0.4f };
+            float[] nearLeftTopOfPelvis = new float[] { 1.1f, -3.5f, 0.4f };
+            float[] farLeftTopOfPelvis = new float[] { 1.1f, -3.5f, -0.4f };
+
+
+            gL.Color(0.52f, 0.8f, 0.92f);
+            gL.Begin(OpenGL.GL_QUAD_STRIP); //Отрисовка передней стороны и задней
+                    gL.Vertex(farRightShoulder[0], farRightShoulder[1], farRightShoulder[2]);
+                    gL.Vertex(farLeftShoulder[0], farLeftShoulder[1], farLeftShoulder[2]);
+                    gL.Vertex(nearRightShoulder[0], nearRightShoulder[1], nearRightShoulder[2]);
+                    gL.Vertex(nearLeftShoulder[0], nearLeftShoulder[1], nearLeftShoulder[2]);
+                    gL.Vertex(rightChest[0], rightChest[1], rightChest[2]);
+                    gL.Vertex(leftChest[0], leftChest[1], leftChest[2]);
+                    gL.Vertex(nearRightLowerChest[0], nearRightLowerChest[1], nearRightLowerChest[2]);
+                    gL.Vertex(nearLeftLowerChest[0], nearLeftLowerChest[1], nearLeftLowerChest[2]);
+                    gL.Vertex(nearRightLowerWaist[0], nearRightLowerWaist[1], nearRightLowerWaist[2]);
+                    gL.Vertex(nearLeftLowerWaist[0], nearLeftLowerWaist[1], nearLeftLowerWaist[2]);
+                    gL.Vertex(nearRightTopOfPelvis[0], nearRightTopOfPelvis[1], nearRightTopOfPelvis[2]);
+                    gL.Vertex(nearLeftTopOfPelvis[0], nearLeftTopOfPelvis[1], nearLeftTopOfPelvis[2]);
+                    gL.Vertex(farRightTopOfPelvis[0], farRightTopOfPelvis[1], farRightTopOfPelvis[2]);
+                    gL.Vertex(farLeftTopOfPelvis[0], farLeftTopOfPelvis[1], farLeftTopOfPelvis[2]);
+                    gL.Vertex(farRightLowerWaist[0], farRightLowerWaist[1], farRightLowerWaist[2]);
+                    gL.Vertex(farLeftLowerWaist[0], farLeftLowerWaist[1], farLeftLowerWaist[2]);
+                    gL.Vertex(farRightLowerChest[0], farRightLowerChest[1], farRightLowerChest[2]);
+                    gL.Vertex(farLeftLowerChest[0], farLeftLowerChest[1], farLeftLowerChest[2]);
+                    gL.Vertex(farRightShoulder[0], farRightShoulder[1], farRightShoulder[2]);
+                    gL.Vertex(farLeftShoulder[0], farLeftShoulder[1], farLeftShoulder[2]);
+            gL.End();
+
         }
 
         private void DrawLaraFace(OpenGL gL)    //Зарисовка есть в блокноте на стр.44
