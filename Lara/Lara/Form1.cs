@@ -20,6 +20,8 @@ namespace Lara
         }
 
         float rotateAngle = 0f;
+        float[] positionOfLaraByXY = new float[] { -1.5f, 2f, -10.0f };
+        float[] positionOfRotatingLara = new float[] { 1.0f, 2f, -10.0f };
 
         private void openGLControl1_OpenGLDraw(object sender, SharpGL.RenderEventArgs args)
         {
@@ -30,33 +32,82 @@ namespace Lara
 
             //Голова Лары по XY
             gL.LoadIdentity();
-            gL.Translate(-1.5f, 0.9f, -6.0f);
+            gL.Translate(positionOfLaraByXY[0], positionOfLaraByXY[1], positionOfLaraByXY[2]);
             gL.Rotate(0.0, 0.0f, 1.0f, 0.0f);
             DrawLaraFace(gL);//*/
 
             //Голова Лары по YZ
-            gL.LoadIdentity();
+            /*gL.LoadIdentity();
             gL.Translate(-1.5f, -1.4f, -6.0f);
             gL.Rotate(90, 0.0f, 1.0f, 0.0f);
             DrawLaraFace(gL);//*/
 
             //Голова Лары вращается
             gL.LoadIdentity();
-            gL.Translate(1.0f, 0.0f, -6.0f);
+            gL.Translate(positionOfRotatingLara[0], positionOfRotatingLara[1], positionOfRotatingLara[2]);
             gL.Rotate(rotateAngle, 0.0f, 1.0f, 0.0f);
-            DrawLaraFace(gL);
-            
+            DrawLaraFace(gL);//*/
+
+            //Шея и торс Лары по XY
+            gL.LoadIdentity();
+            gL.Translate(positionOfLaraByXY[0], positionOfLaraByXY[1], positionOfLaraByXY[2]);
+            gL.Rotate(0.0, 0.0f, 1.0f, 0.0f);
+            DrawLaraNeckAndTorso(gL);//*/
+
+            //Шея и торс Лары вращаются
+            gL.LoadIdentity();
+            gL.Translate(positionOfRotatingLara[0], positionOfRotatingLara[1], positionOfRotatingLara[2]);
+            gL.Rotate(rotateAngle, 0.0f, 1.0f, 0.0f);
+            DrawLaraNeckAndTorso(gL);//*/
+
 
 
             rotateAngle += 1f;
         }
 
-        private void DrawLaraHair(OpenGL gL)
+        private void DrawLaraNeckAndTorso(OpenGL gL)    //Зарисовка есть в блокноте на стр.52
         {
-            throw new NotImplementedException();
+            ///Общие точки///
+            float[] farTopPointOfRightSideOfNeck = new float[] { -0.2f, 0.0f, -0.2f };    //Дальняя верхняя правая точка шеи
+            float[] nearTopPointOfRightSideOfNeck = new float[] { -0.2f, 0.0f, 0.2f };    //Ближняя верхняя правая точка шеи
+            float[] farTopPointOfLeftSideOfNeck = new float[] { 0.2f, 0.0f, -0.2f };    //Дальняя верхняя левая точка шеи
+            float[] nearTopPointOfLeftSideOfNeck = new float[] { 0.2f, 0.0f, 0.2f };    //Ближняя верхняя левая точка шеи
+
+            float[] farBottomPointOfRightSideOfNeck = new float[] { -0.3f, -0.8f, -0.3f };    //Дальняя верхняя правая точка шеи
+            float[] nearBottomPointOfRightSideOfNeck = new float[] { -0.3f, -0.8f, 0.3f };    //Ближняя верхняя правая точка шеи
+            float[] farBottomPointOfLeftSideOfNeck = new float[] { 0.3f, -0.8f, -0.3f };    //Дальняя верхняя левая точка шеи
+            float[] nearBottomPointOfLeftSideOfNeck = new float[] { 0.3f, -0.8f, 0.3f };    //Ближняя верхняя левая точка шеи
+
+
+
+            gL.Color(1f, 1f, 0f);
+            gL.Begin(OpenGL.GL_QUADS);  //Верхняя часть шеи
+                    gL.Vertex(farTopPointOfRightSideOfNeck[0], farTopPointOfRightSideOfNeck[1], farTopPointOfRightSideOfNeck[2]);
+                    gL.Vertex(nearTopPointOfRightSideOfNeck[0], nearTopPointOfRightSideOfNeck[1], nearTopPointOfRightSideOfNeck[2]);
+                    gL.Vertex(nearTopPointOfLeftSideOfNeck[0], nearTopPointOfLeftSideOfNeck[1], nearTopPointOfLeftSideOfNeck[2]);
+                    gL.Vertex(farTopPointOfLeftSideOfNeck[0], farTopPointOfLeftSideOfNeck[1], farTopPointOfLeftSideOfNeck[2]);
+            gL.End();
+            gL.Begin(OpenGL.GL_QUADS);  //Нижняя часть шеи
+                    gL.Vertex(farBottomPointOfRightSideOfNeck[0], farBottomPointOfRightSideOfNeck[1], farBottomPointOfRightSideOfNeck[2]);
+                    gL.Vertex(nearBottomPointOfRightSideOfNeck[0], nearBottomPointOfRightSideOfNeck[1], nearBottomPointOfRightSideOfNeck[2]);
+                    gL.Vertex(nearBottomPointOfLeftSideOfNeck[0], nearBottomPointOfLeftSideOfNeck[1], nearBottomPointOfLeftSideOfNeck[2]);
+                    gL.Vertex(farBottomPointOfLeftSideOfNeck[0], farBottomPointOfLeftSideOfNeck[1], farBottomPointOfLeftSideOfNeck[2]);
+            gL.End();
+            gL.Begin(OpenGL.GL_QUAD_STRIP); 
+                    gL.Vertex(nearTopPointOfRightSideOfNeck[0], nearTopPointOfRightSideOfNeck[1], nearTopPointOfRightSideOfNeck[2]);
+                    gL.Vertex(nearBottomPointOfRightSideOfNeck[0], nearBottomPointOfRightSideOfNeck[1], nearBottomPointOfRightSideOfNeck[2]);
+                    gL.Vertex(farTopPointOfRightSideOfNeck[0], farTopPointOfRightSideOfNeck[1], farTopPointOfRightSideOfNeck[2]);
+                    gL.Vertex(farBottomPointOfRightSideOfNeck[0], farBottomPointOfRightSideOfNeck[1], farBottomPointOfRightSideOfNeck[2]);
+                    gL.Vertex(farTopPointOfLeftSideOfNeck[0], farTopPointOfLeftSideOfNeck[1], farTopPointOfLeftSideOfNeck[2]);
+                    gL.Vertex(farBottomPointOfLeftSideOfNeck[0], farBottomPointOfLeftSideOfNeck[1], farBottomPointOfLeftSideOfNeck[2]);
+                    gL.Vertex(nearTopPointOfLeftSideOfNeck[0], nearTopPointOfLeftSideOfNeck[1], nearTopPointOfLeftSideOfNeck[2]);
+                    gL.Vertex(nearBottomPointOfLeftSideOfNeck[0], nearBottomPointOfLeftSideOfNeck[1], nearBottomPointOfLeftSideOfNeck[2]);
+                    gL.Vertex(nearTopPointOfRightSideOfNeck[0], nearTopPointOfRightSideOfNeck[1], nearTopPointOfRightSideOfNeck[2]);
+                    gL.Vertex(nearBottomPointOfRightSideOfNeck[0], nearBottomPointOfRightSideOfNeck[1], nearBottomPointOfRightSideOfNeck[2]);
+            gL.End();
         }
 
-        private void DrawLaraFace(OpenGL gL)
+        private void DrawLaraFace(OpenGL gL)    //Зарисовка есть в блокноте на стр.44
         {
             ///Общие точки///
             float[] rightCheeckFarPoint = new float[] { -0.6f, 0.7f, 0.0f };    //Дальняя верхняя точка щеки
