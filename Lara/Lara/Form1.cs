@@ -20,8 +20,8 @@ namespace Lara
         }
 
         float rotateAngle = 0f;
-        float[] positionOfLaraByXY = new float[] { -1.5f, 2f, -10.0f };
-        float[] positionOfRotatingLara = new float[] { 1.0f, 2f, -10.0f };
+        float[] positionOfLaraByXY = new float[] { -2f, 2f, -10.0f };
+        float[] positionOfRotatingLara = new float[] { 2.0f, 2f, -10.0f };
 
         private void openGLControl1_OpenGLDraw(object sender, SharpGL.RenderEventArgs args)
         {
@@ -111,7 +111,7 @@ namespace Lara
 
 
 
-            ///Торс
+            ///Торс (Зарисовка есть на стр.52)
             ///
             ///Плечи
             float[] farRightShoulder = new float[] { -1.1f, -0.8f, -0.4f };
@@ -165,7 +165,95 @@ namespace Lara
                     gL.Vertex(farRightShoulder[0], farRightShoulder[1], farRightShoulder[2]);
                     gL.Vertex(farLeftShoulder[0], farLeftShoulder[1], farLeftShoulder[2]);
             gL.End();
+            
+            gL.Begin(OpenGL.GL_TRIANGLE_STRIP); //Отрисовка правой стороны
+                    gL.Vertex(nearRightShoulder[0], nearRightShoulder[1], nearRightShoulder[2]);
+                    gL.Vertex(farRightShoulder[0], farRightShoulder[1], farRightShoulder[2]);
+                    gL.Vertex(rightChest[0], rightChest[1], rightChest[2]);
+                    gL.Vertex(farRightLowerChest[0], farRightLowerChest[1], farRightLowerChest[2]);
+                    gL.Vertex(nearRightLowerChest[0], nearRightLowerChest[1], nearRightLowerChest[2]);
+                    gL.Vertex(farRightLowerWaist[0], farRightLowerWaist[1], farRightLowerWaist[2]);
+                    gL.Vertex(nearRightLowerWaist[0], nearRightLowerWaist[1], nearRightLowerWaist[2]);
+                    gL.Vertex(farRightTopOfPelvis[0], farRightTopOfPelvis[1], farRightTopOfPelvis[2]);
+                    gL.Vertex(nearRightTopOfPelvis[0], nearRightTopOfPelvis[1], nearRightTopOfPelvis[2]);
+            gL.End();
+            
+            gL.Begin(OpenGL.GL_TRIANGLE_STRIP); //Отрисовка левой стороны
+                    gL.Vertex(nearLeftShoulder[0], nearLeftShoulder[1], nearLeftShoulder[2]);
+                    gL.Vertex(farLeftShoulder[0], farLeftShoulder[1], farLeftShoulder[2]);
+                    gL.Vertex(leftChest[0], leftChest[1], leftChest[2]);
+                    gL.Vertex(farLeftLowerChest[0], farLeftLowerChest[1], farLeftLowerChest[2]);
+                    gL.Vertex(nearLeftLowerChest[0], nearLeftLowerChest[1], nearLeftLowerChest[2]);
+                    gL.Vertex(farLeftLowerWaist[0], farLeftLowerWaist[1], farLeftLowerWaist[2]);
+                    gL.Vertex(nearLeftLowerWaist[0], nearLeftLowerWaist[1], nearLeftLowerWaist[2]);
+                    gL.Vertex(farLeftTopOfPelvis[0], farLeftTopOfPelvis[1], farLeftTopOfPelvis[2]);
+                    gL.Vertex(nearLeftTopOfPelvis[0], nearLeftTopOfPelvis[1], nearLeftTopOfPelvis[2]);
+            gL.End();
 
+
+            ///Руки
+            ///Правая рука
+            ///Верхний квадрат плеча
+            float[] rightHandTopQuadFarRightPoint = new float[] { -1.45f, -0.9f, -0.25f };
+            float[] rightHandTopQuadNearRightPoint = new float[] { -1.45f, -0.9f, 0.25f };
+            float[] rightHandTopQuadFarLeftPoint = new float[] { -1.1f, -0.9f, -0.25f };
+            float[] rightHandTopQuadNearLeftPoint = new float[] { -1.1f, -0.9f, 0.25f };
+            ///Средний квадрат плеча
+            float[] rightHandMiddleQuadFarRightPoint = new float[] { -1.7f, -1.2f, -0.35f };
+            float[] rightHandMiddleQuadNearRightPoint = new float[] { -1.7f, -1.2f, 0.35f };
+            float[] rightHandMiddleQuadFarLeftPoint = new float[] { -1.1f, -1.2f, -0.35f };
+            float[] rightHandMiddleQuadNearLeftPoint = new float[] { -1.1f, -1.2f, 0.35f };
+            ///Нижний квадрат плеча
+            float[] rightHandLowerQuadFarRightPoint = new float[] { -2f, -2.8f, -0.2f };
+            float[] rightHandLowerQuadNearRightPoint = new float[] { -2f, -2.8f, 0.2f };
+            float[] rightHandLowerQuadFarLeftPoint = new float[] { -1.6f, -2.8f, -0.2f };
+            float[] rightHandLowerQuadNearLeftPoint = new float[] { -1.6f, -2.8f, 0.2f };
+
+
+
+            gL.Color(1f, 1f, 0f);
+            gL.Begin(OpenGL.GL_QUADS); //Отрисовка верхнего квадрата правой руки
+                    gL.Vertex(rightHandTopQuadFarRightPoint[0], rightHandTopQuadFarRightPoint[1], rightHandTopQuadFarRightPoint[2]);
+                    gL.Vertex(rightHandTopQuadFarLeftPoint[0], rightHandTopQuadFarLeftPoint[1], rightHandTopQuadFarLeftPoint[2]);
+                    gL.Vertex(rightHandTopQuadNearLeftPoint[0], rightHandTopQuadNearLeftPoint[1], rightHandTopQuadNearLeftPoint[2]);
+                    gL.Vertex(rightHandTopQuadNearRightPoint[0], rightHandTopQuadNearRightPoint[1], rightHandTopQuadNearRightPoint[2]);
+            gL.End();
+            gL.Begin(OpenGL.GL_QUADS); //Отрисовка среднего квадрата правой руки
+                    gL.Vertex(rightHandMiddleQuadFarRightPoint[0], rightHandMiddleQuadFarRightPoint[1], rightHandMiddleQuadFarRightPoint[2]);
+                    gL.Vertex(rightHandMiddleQuadFarLeftPoint[0], rightHandMiddleQuadFarLeftPoint[1], rightHandMiddleQuadFarLeftPoint[2]);
+                    gL.Vertex(rightHandMiddleQuadNearLeftPoint[0], rightHandMiddleQuadNearLeftPoint[1], rightHandMiddleQuadNearLeftPoint[2]);
+                    gL.Vertex(rightHandMiddleQuadNearRightPoint[0], rightHandMiddleQuadNearRightPoint[1], rightHandMiddleQuadNearRightPoint[2]);
+            gL.End();
+            gL.Begin(OpenGL.GL_QUAD_STRIP);  //Соединение верхнего и среднего квадрата правой руки
+                    gL.Vertex(rightHandTopQuadNearLeftPoint[0], rightHandTopQuadNearLeftPoint[1], rightHandTopQuadNearLeftPoint[2]);
+                    gL.Vertex(rightHandMiddleQuadNearLeftPoint[0], rightHandMiddleQuadNearLeftPoint[1], rightHandMiddleQuadNearLeftPoint[2]);
+                    gL.Vertex(rightHandTopQuadNearRightPoint[0], rightHandTopQuadNearRightPoint[1], rightHandTopQuadNearRightPoint[2]);
+                    gL.Vertex(rightHandMiddleQuadNearRightPoint[0], rightHandMiddleQuadNearRightPoint[1], rightHandMiddleQuadNearRightPoint[2]);
+                    gL.Vertex(rightHandTopQuadFarRightPoint[0], rightHandTopQuadFarRightPoint[1], rightHandTopQuadFarRightPoint[2]);
+                    gL.Vertex(rightHandMiddleQuadFarRightPoint[0], rightHandMiddleQuadFarRightPoint[1], rightHandMiddleQuadFarRightPoint[2]);
+                    gL.Vertex(rightHandTopQuadFarLeftPoint[0], rightHandTopQuadFarLeftPoint[1], rightHandTopQuadFarLeftPoint[2]);
+                    gL.Vertex(rightHandMiddleQuadFarLeftPoint[0], rightHandMiddleQuadFarLeftPoint[1], rightHandMiddleQuadFarLeftPoint[2]);
+                    gL.Vertex(rightHandTopQuadNearLeftPoint[0], rightHandTopQuadNearLeftPoint[1], rightHandTopQuadNearLeftPoint[2]);
+                    gL.Vertex(rightHandMiddleQuadNearLeftPoint[0], rightHandMiddleQuadNearLeftPoint[1], rightHandMiddleQuadNearLeftPoint[2]);
+            gL.End();
+            gL.Begin(OpenGL.GL_QUADS); //Отрисовка нижнего квадрата правой руки
+                    gL.Vertex(rightHandLowerQuadFarRightPoint[0], rightHandLowerQuadFarRightPoint[1], rightHandLowerQuadFarRightPoint[2]);
+                    gL.Vertex(rightHandLowerQuadFarLeftPoint[0], rightHandLowerQuadFarLeftPoint[1], rightHandLowerQuadFarLeftPoint[2]);
+                    gL.Vertex(rightHandLowerQuadNearLeftPoint[0], rightHandLowerQuadNearLeftPoint[1], rightHandLowerQuadNearLeftPoint[2]);
+                    gL.Vertex(rightHandLowerQuadNearRightPoint[0], rightHandLowerQuadNearRightPoint[1], rightHandLowerQuadNearRightPoint[2]);
+            gL.End();
+            gL.Begin(OpenGL.GL_QUAD_STRIP);  //Соединение среднего и нижнего квадрата правой руки
+            gL.Vertex(rightHandMiddleQuadNearLeftPoint[0], rightHandMiddleQuadNearLeftPoint[1], rightHandMiddleQuadNearLeftPoint[2]);
+            gL.Vertex(rightHandLowerQuadNearLeftPoint[0], rightHandLowerQuadNearLeftPoint[1], rightHandLowerQuadNearLeftPoint[2]);
+            gL.Vertex(rightHandMiddleQuadNearRightPoint[0], rightHandMiddleQuadNearRightPoint[1], rightHandMiddleQuadNearRightPoint[2]);
+            gL.Vertex(rightHandLowerQuadNearRightPoint[0], rightHandLowerQuadNearRightPoint[1], rightHandLowerQuadNearRightPoint[2]);
+            gL.Vertex(rightHandMiddleQuadFarRightPoint[0], rightHandMiddleQuadFarRightPoint[1], rightHandMiddleQuadFarRightPoint[2]);
+            gL.Vertex(rightHandLowerQuadFarRightPoint[0], rightHandLowerQuadFarRightPoint[1], rightHandLowerQuadFarRightPoint[2]);
+            gL.Vertex(rightHandMiddleQuadFarLeftPoint[0], rightHandMiddleQuadFarLeftPoint[1], rightHandMiddleQuadFarLeftPoint[2]);
+            gL.Vertex(rightHandLowerQuadFarLeftPoint[0], rightHandLowerQuadFarLeftPoint[1], rightHandLowerQuadFarLeftPoint[2]);
+            gL.Vertex(rightHandMiddleQuadNearLeftPoint[0], rightHandMiddleQuadNearLeftPoint[1], rightHandMiddleQuadNearLeftPoint[2]);
+            gL.Vertex(rightHandLowerQuadNearLeftPoint[0], rightHandLowerQuadNearLeftPoint[1], rightHandLowerQuadNearLeftPoint[2]);
+            gL.End();
         }
 
         private void DrawLaraFace(OpenGL gL)    //Зарисовка есть в блокноте на стр.44
