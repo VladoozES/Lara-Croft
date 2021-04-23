@@ -26,7 +26,7 @@ namespace Lara
         private void openGLControl1_OpenGLDraw(object sender, SharpGL.RenderEventArgs args)
         {
             OpenGL gL = openGLControl1.OpenGL;
-            //gL.PolygonMode(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_LINE);
+            gL.PolygonMode(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_LINE);
             gL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
 
 
@@ -60,9 +60,162 @@ namespace Lara
             gL.Rotate(rotateAngle, 0.0f, 1.0f, 0.0f);
             DrawLaraNeckAndTorso(gL);//*/
 
+            //Низ Лары по XY
+            gL.LoadIdentity();
+            gL.Translate(positionOfLaraByXY[0], positionOfLaraByXY[1], positionOfLaraByXY[2]);
+            gL.Rotate(0.0, 0.0f, 1.0f, 0.0f);
+            DrawLaraBottom(gL);//*/
+
+            //Низ Лары вращается
+            gL.LoadIdentity();
+            gL.Translate(positionOfRotatingLara[0], positionOfRotatingLara[1], positionOfRotatingLara[2]);
+            gL.Rotate(rotateAngle, 0.0f, 1.0f, 0.0f);
+            DrawLaraBottom(gL);//*/
 
 
             rotateAngle += 1f;
+        }
+
+        private void DrawLaraBottom(OpenGL gL)
+        {
+            gL.Color(0.31f, 0.78f, 0.47f);
+            DrawHemisphereByZ(10, 5, 0.65f, gL, -0.3f, -4f, -0.2f);  //1-ая ягодица
+            DrawHemisphereByZ(10, 5, 0.65f, gL, 0.3f, -4f, -0.2f);   //2-ая ягодица
+
+            ///Передняя сторона шорт
+            float[] nearRightTopOfPelvis = new float[] { -0.85f, -3.4f, 0.3f }; //Ближняя точка правой стороны верхнего таза
+            float[] nearLeftTopOfPelvis = new float[] { 0.85f, -3.4f, 0.3f };   //Ближняя точка левой стороны верхнего таза
+            float[] shortsRightBottomRightPoint = new float[] { -1f, -5f, 0.35f }; //Правая шорта, правая точка
+            float[] shortsRightBottomLeftPoint = new float[] { -0.4f, -5f, 0.35f };   //Правая шорта, левая точка
+            float[] rightNotchBetweenLegs = new float[] { -0.3f, -4.5f, 0.3f };   //Междуножье, правая точка
+            float[] leftNotchBetweenLegs = new float[] { 0.3f, -4.5f, 0.3f };     //Междуножье, левая точка
+            float[] shortsLeftBottomLeftPoint = new float[] { 1f, -5f, 0.35f };    //Левая шорта,  левая точка
+            float[] shortsLeftBottomRightPoint = new float[] { 0.4f, -5f, 0.35f };    //Левая шорта, правая точка
+
+            ///Задняя сторона шорт
+            float[] farRightTopOfPelvis = new float[] { -0.85f, -3.4f, -0.5f }; //Ближняя точка правой стороны верхнего таза
+            float[] farLeftTopOfPelvis = new float[] { 0.85f, -3.4f, -0.5f };   //Ближняя точка левой стороны верхнего таза
+            float[] shortsAssRightBottomRightPoint = new float[] { -1f, -5f, -0.5f }; //Правая шорта, правая точка
+            float[] shortsAssRightBottomLeftPoint = new float[] { -0.4f, -5f, -0.5f };   //Правая шорта, левая точка
+            float[] rightAssNotchBetweenLegs = new float[] { -0.3f, -4.5f, -0.4f };   //Междуножье, правая точка
+            float[] leftAssNotchBetweenLegs = new float[] { 0.3f, -4.5f, -0.4f };     //Междуножье, левая точка
+            float[] shortsAssLeftBottomLeftPoint = new float[] { 1f, -5f, -0.5f };    //Левая шорта,  левая точка
+            float[] shortsAssLeftBottomRightPoint = new float[] { 0.4f, -5f, -0.5f };    //Левая шорта, правая точка
+
+            ///Отрисовка передней стороны шорт
+            gL.Begin(OpenGL.GL_POLYGON);
+                    gL.Vertex(nearRightTopOfPelvis[0], nearRightTopOfPelvis[1], nearRightTopOfPelvis[2]);
+                    gL.Vertex(nearLeftTopOfPelvis[0], nearLeftTopOfPelvis[1], nearLeftTopOfPelvis[2]);
+                    gL.Vertex(shortsLeftBottomLeftPoint[0], shortsLeftBottomLeftPoint[1], shortsLeftBottomLeftPoint[2]);
+                    gL.Vertex(shortsLeftBottomRightPoint[0], shortsLeftBottomRightPoint[1], shortsLeftBottomRightPoint[2]);
+                    gL.Vertex(leftNotchBetweenLegs[0], leftNotchBetweenLegs[1], leftNotchBetweenLegs[2]);
+                    gL.Vertex(rightNotchBetweenLegs[0], rightNotchBetweenLegs[1], rightNotchBetweenLegs[2]);
+                    gL.Vertex(shortsRightBottomLeftPoint[0], shortsRightBottomLeftPoint[1], shortsRightBottomLeftPoint[2]);
+                    gL.Vertex(shortsRightBottomRightPoint[0], shortsRightBottomRightPoint[1], shortsRightBottomRightPoint[2]);
+                    gL.Vertex(nearRightTopOfPelvis[0], nearRightTopOfPelvis[1], nearRightTopOfPelvis[2]);
+            gL.End();
+
+            ///Отрисовка задней стороны шорт
+            gL.Begin(OpenGL.GL_POLYGON);
+                    gL.Vertex(farRightTopOfPelvis[0], farRightTopOfPelvis[1], farRightTopOfPelvis[2]);
+                    gL.Vertex(farLeftTopOfPelvis[0], farLeftTopOfPelvis[1], farLeftTopOfPelvis[2]);
+                    gL.Vertex(shortsAssLeftBottomLeftPoint[0], shortsAssLeftBottomLeftPoint[1], shortsAssLeftBottomLeftPoint[2]);
+                    gL.Vertex(shortsAssLeftBottomRightPoint[0], shortsAssLeftBottomRightPoint[1], shortsAssLeftBottomRightPoint[2]);
+                    gL.Vertex(leftAssNotchBetweenLegs[0], leftAssNotchBetweenLegs[1], leftAssNotchBetweenLegs[2]);
+                    gL.Vertex(rightAssNotchBetweenLegs[0], rightAssNotchBetweenLegs[1], rightAssNotchBetweenLegs[2]);
+                    gL.Vertex(shortsAssRightBottomLeftPoint[0], shortsAssRightBottomLeftPoint[1], shortsAssRightBottomLeftPoint[2]);
+                    gL.Vertex(shortsAssRightBottomRightPoint[0], shortsAssRightBottomRightPoint[1], shortsAssRightBottomRightPoint[2]);
+                    gL.Vertex(farRightTopOfPelvis[0], farRightTopOfPelvis[1], farRightTopOfPelvis[2]);
+            gL.End();
+
+            ///Соединение задних и передних частей шорт
+            gL.Begin(OpenGL.GL_QUAD_STRIP);
+                    gL.Vertex(farRightTopOfPelvis[0], farRightTopOfPelvis[1], farRightTopOfPelvis[2]);
+                    gL.Vertex(nearRightTopOfPelvis[0], nearRightTopOfPelvis[1], nearRightTopOfPelvis[2]);
+                    gL.Vertex(shortsAssRightBottomRightPoint[0], shortsAssRightBottomRightPoint[1], shortsAssRightBottomRightPoint[2]);
+                    gL.Vertex(shortsRightBottomRightPoint[0], shortsRightBottomRightPoint[1], shortsRightBottomRightPoint[2]);
+                    gL.Vertex(shortsAssRightBottomLeftPoint[0], shortsAssRightBottomLeftPoint[1], shortsAssRightBottomLeftPoint[2]);
+                    gL.Vertex(shortsRightBottomLeftPoint[0], shortsRightBottomLeftPoint[1], shortsRightBottomLeftPoint[2]);
+                    gL.Vertex(rightAssNotchBetweenLegs[0], rightAssNotchBetweenLegs[1], rightAssNotchBetweenLegs[2]);
+                    gL.Vertex(rightNotchBetweenLegs[0], rightNotchBetweenLegs[1], rightNotchBetweenLegs[2]);
+                    gL.Vertex(leftAssNotchBetweenLegs[0], leftAssNotchBetweenLegs[1], leftAssNotchBetweenLegs[2]);
+                    gL.Vertex(leftNotchBetweenLegs[0], leftNotchBetweenLegs[1], leftNotchBetweenLegs[2]);
+                    gL.Vertex(shortsAssLeftBottomRightPoint[0], shortsAssLeftBottomRightPoint[1], shortsAssLeftBottomRightPoint[2]);
+                    gL.Vertex(shortsLeftBottomRightPoint[0], shortsLeftBottomRightPoint[1], shortsLeftBottomRightPoint[2]);
+                    gL.Vertex(shortsAssLeftBottomLeftPoint[0], shortsAssLeftBottomLeftPoint[1], shortsAssLeftBottomLeftPoint[2]);
+                    gL.Vertex(shortsLeftBottomLeftPoint[0], shortsLeftBottomLeftPoint[1], shortsLeftBottomLeftPoint[2]);
+                    gL.Vertex(farLeftTopOfPelvis[0], farLeftTopOfPelvis[1], farLeftTopOfPelvis[2]);
+                    gL.Vertex(nearLeftTopOfPelvis[0], nearLeftTopOfPelvis[1], nearLeftTopOfPelvis[2]);
+            gL.End();
+        }
+
+        private void DrawHemisphereByZ(int n, int k, float radius, OpenGL gL, float x, float y, float z)
+        {
+            var staticStartXZPoint = new PointF(x-radius, z);
+            var startXZPoint = new PointF(x-radius, z);
+            var nextXZPoint = new PointF();
+            var tempXYPoint = new PointF();
+            var tempXZPoint = new PointF();
+
+
+            var nAngle = 360f / n;
+            var kAngle = 90f / k;
+            for (var i = 0; i < n; i++)
+            {
+                gL.Begin(OpenGL.GL_QUAD_STRIP);
+                if (startXZPoint.Y <= z + 0.4f)
+                    gL.Vertex(startXZPoint.X, y, startXZPoint.Y);
+                nextXZPoint = new PointF(
+                    x + (startXZPoint.X - x) * (float)Math.Cos(nAngle * Math.PI / 180) - (startXZPoint.Y - z) *
+                        (float)Math.Sin(nAngle * Math.PI / 180),
+                    z + (startXZPoint.X - x) * (float)Math.Sin(nAngle * Math.PI / 180) + (startXZPoint.Y - z) *
+                        (float)Math.Cos(nAngle * Math.PI / 180));
+                if (nextXZPoint.Y <= z + 0.4f)
+                    gL.Vertex(nextXZPoint.X, y, nextXZPoint.Y);
+                for (var j = 0; j < k; j++)
+                {
+                    tempXYPoint = new PointF(
+                        x + (staticStartXZPoint.X - x) * (float)Math.Cos((j + 1) * kAngle * Math.PI / 180),   //часть формулы отпадает из-за умножения на 0
+                        y + (staticStartXZPoint.X - x) * (float)Math.Sin((j + 1) * kAngle * Math.PI / 180));  //часть формулы отпадает из-за умножения на 0
+                    tempXZPoint = new PointF(
+                        x + (tempXYPoint.X - x) * (float)Math.Cos(i * nAngle * Math.PI / 180),    //часть формулы отпадает из-за умножения на 0
+                        z + (tempXYPoint.X - x) * (float)Math.Sin(i * nAngle * Math.PI / 180));   //часть формулы отпадает из-за умножения на 0
+                    if (tempXZPoint.Y <= z)
+                        gL.Vertex(tempXZPoint.X, tempXYPoint.Y, tempXZPoint.Y);
+                    tempXZPoint = new PointF(
+                        x + (tempXYPoint.X - x) * (float)Math.Cos((i + 1) * nAngle * Math.PI / 180),      //часть формулы отпадает из-за умножения на 0
+                        z + (tempXYPoint.X - x) * (float)Math.Sin((i + 1) * nAngle * Math.PI / 180));     //часть формулы отпадает из-за умножения на 0
+                    if (tempXZPoint.Y <= z+0.4f)
+                        gL.Vertex(tempXZPoint.X, tempXYPoint.Y, tempXZPoint.Y);
+                }
+                // Далее следует тупейшая реализация отрисовки второй половинки. Т.е.
+                // всё заново пересчитывается, а разница только в том, что игреки с противоположными знаками.
+                // И лучше хранить. Потом сделаю
+                gL.End();
+                gL.Begin(OpenGL.GL_QUAD_STRIP);
+                if (startXZPoint.Y <= z + 0.4f)
+                    gL.Vertex(startXZPoint.X, y, startXZPoint.Y);
+                if (nextXZPoint.Y <= z + 0.4f)
+                    gL.Vertex(nextXZPoint.X, y, nextXZPoint.Y);
+                for (var j = 0; j < k; j++)
+                {
+                    tempXYPoint = new PointF(
+                        x + (staticStartXZPoint.X - x) * (float)Math.Cos((j + 1) * kAngle * Math.PI / 180),   //часть формулы отпадает из-за умножения на 0
+                        y + (staticStartXZPoint.X - x) * (float)Math.Sin((j + 1) * kAngle * Math.PI / 180));  //часть формулы отпадает из-за умножения на 0
+                    tempXZPoint = new PointF(
+                        x + (tempXYPoint.X - x) * (float)Math.Cos(i * nAngle * Math.PI / 180),    //часть формулы отпадает из-за умножения на 0
+                        z + (tempXYPoint.X - x) * (float)Math.Sin(i * nAngle * Math.PI / 180));   //часть формулы отпадает из-за умножения на 0
+                    if (tempXZPoint.Y <= z)
+                        gL.Vertex(tempXZPoint.X, 2*y - tempXYPoint.Y, tempXZPoint.Y);
+                    tempXZPoint = new PointF(
+                        x + (tempXYPoint.X - x) * (float)Math.Cos((i + 1) * nAngle * Math.PI / 180),      //часть формулы отпадает из-за умножения на 0
+                        z + (tempXYPoint.X - x) * (float)Math.Sin((i + 1) * nAngle * Math.PI / 180));     //часть формулы отпадает из-за умножения на 0
+                    if (tempXZPoint.Y <= z + 0.4f)
+                        gL.Vertex(tempXZPoint.X, 2*y - tempXYPoint.Y, tempXZPoint.Y);
+                }
+                startXZPoint = nextXZPoint;
+                gL.End();
+            }
         }
 
         private void DrawLaraNeckAndTorso(OpenGL gL)    //Зарисовка есть в блокноте на стр.52
@@ -144,6 +297,7 @@ namespace Lara
                     gL.Vertex(farRightShoulder[0], farRightShoulder[1], farRightShoulder[2]);
                     gL.Vertex(farLeftShoulder[0], farLeftShoulder[1], farLeftShoulder[2]);
                     gL.Vertex(nearRightShoulder[0], nearRightShoulder[1], nearRightShoulder[2]);
+                    gL.Vertex(nearLeftShoulder[0], nearLeftShoulder[1], nearLeftShoulder[2]);
                     gL.Vertex(nearLeftShoulder[0], nearLeftShoulder[1], nearLeftShoulder[2]);
                     gL.Vertex(rightChest[0], rightChest[1], rightChest[2]);
                     gL.Vertex(leftChest[0], leftChest[1], leftChest[2]);
