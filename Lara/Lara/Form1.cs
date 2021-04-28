@@ -20,8 +20,8 @@ namespace Lara
         }
 
         float rotateAngle = 0f;
-        float[] positionOfLaraByXY = new float[] { -2.5f, 5f, -15.0f };
-        float[] positionOfRotatingLara = new float[] { 2.5f, 5f, -15.0f };
+        float[] positionOfLaraByXY = new float[] { -2.5f, 4f, -15.0f };
+        float[] positionOfRotatingLara = new float[] { 2.5f, 4f, -15.0f };
 
         private void openGLControl1_OpenGLDraw(object sender, SharpGL.RenderEventArgs args)
         {
@@ -86,21 +86,21 @@ namespace Lara
             float[] nearRightTopOfPelvis = new float[] { -0.85f, -3.4f, 0.3f }; //Ближняя точка правой стороны верхнего таза
             float[] nearLeftTopOfPelvis = new float[] { 0.85f, -3.4f, 0.3f };   //Ближняя точка левой стороны верхнего таза
             float[] shortsRightBottomRightPoint = new float[] { -1f, -5f, 0.35f }; //Правая шорта, правая точка
-            float[] shortsRightBottomLeftPoint = new float[] { -0.05f, -5f, 0.35f };   //Правая шорта, левая точка
+            float[] shortsRightBottomLeftPoint = new float[] { -0.1f, -5f, 0.35f };   //Правая шорта, левая точка
             float[] rightNotchBetweenLegs = new float[] { -0.15f, -4.5f, 0.3f };   //Междуножье, правая точка
             float[] leftNotchBetweenLegs = new float[] { 0.15f, -4.5f, 0.3f };     //Междуножье, левая точка
             float[] shortsLeftBottomLeftPoint = new float[] { 1f, -5f, 0.35f };    //Левая шорта,  левая точка
-            float[] shortsLeftBottomRightPoint = new float[] { 0.05f, -5f, 0.35f };    //Левая шорта, правая точка
+            float[] shortsLeftBottomRightPoint = new float[] { 0.1f, -5f, 0.35f };    //Левая шорта, правая точка
 
             ///Задняя сторона шорт
             float[] farRightTopOfPelvis = new float[] { -0.85f, -3.4f, -0.5f }; //Ближняя точка правой стороны верхнего таза
             float[] farLeftTopOfPelvis = new float[] { 0.85f, -3.4f, -0.5f };   //Ближняя точка левой стороны верхнего таза
             float[] shortsAssRightBottomRightPoint = new float[] { -1f, -5f, -0.5f }; //Правая шорта, правая точка
-            float[] shortsAssRightBottomLeftPoint = new float[] { -0.05f, -5f, -0.5f };   //Правая шорта, левая точка
+            float[] shortsAssRightBottomLeftPoint = new float[] { -0.1f, -5f, -0.5f };   //Правая шорта, левая точка
             float[] rightAssNotchBetweenLegs = new float[] { -0.15f, -4.5f, -0.4f };   //Междуножье, правая точка
             float[] leftAssNotchBetweenLegs = new float[] { 0.15f, -4.5f, -0.4f };     //Междуножье, левая точка
             float[] shortsAssLeftBottomLeftPoint = new float[] { 1f, -5f, -0.5f };    //Левая шорта,  левая точка
-            float[] shortsAssLeftBottomRightPoint = new float[] { 0.05f, -5f, -0.5f };    //Левая шорта, правая точка
+            float[] shortsAssLeftBottomRightPoint = new float[] { 0.1f, -5f, -0.5f };    //Левая шорта, правая точка
 
             ///Отрисовка передней стороны шорт
             gL.Begin(OpenGL.GL_POLYGON);
@@ -398,10 +398,10 @@ namespace Lara
             ///Торс
             ///
             ///Плечи
-            float[] farRightShoulder = new float[] { -1f, -0.8f, -0.4f };
-            float[] nearRightShoulder = new float[] { -1f, -0.8f, 0.4f };
-            float[] farLeftShoulder = new float[] { 1f, -0.8f, -0.4f };
-            float[] nearLeftShoulder = new float[] { 1f, -0.8f, 0.4f };
+            float[] farRightShoulder = new float[] { -0.9f, -0.8f, -0.4f };
+            float[] nearRightShoulder = new float[] { -0.9f, -0.8f, 0.4f };
+            float[] farLeftShoulder = new float[] { 0.9f, -0.8f, -0.4f };
+            float[] nearLeftShoulder = new float[] { 0.9f, -0.8f, 0.4f };
             ///
             ///Грудь
             float[] rightChest = new float[] { -1f, -1.6f, 1.3f };
@@ -480,8 +480,8 @@ namespace Lara
             ///Верхний квадрат плеча
             float[] rightHandTopQuadFarRightPoint = new float[] { -1.35f, -0.9f, -0.25f };
             float[] rightHandTopQuadNearRightPoint = new float[] { -1.35f, -0.9f, 0.25f };
-            float[] rightHandTopQuadFarLeftPoint = new float[] { -1f, -0.9f, -0.25f };
-            float[] rightHandTopQuadNearLeftPoint = new float[] { -1f, -0.9f, 0.25f };
+            float[] rightHandTopQuadFarLeftPoint = new float[] { -0.9f, -0.9f, -0.25f };
+            float[] rightHandTopQuadNearLeftPoint = new float[] { -0.9f, -0.9f, 0.25f };
             ///Средний квадрат плеча
             float[] rightHandMiddleQuadFarRightPoint = new float[] { -1.6f, -1.2f, -0.35f };
             float[] rightHandMiddleQuadNearRightPoint = new float[] { -1.6f, -1.2f, 0.35f };
@@ -571,8 +571,8 @@ namespace Lara
             ///Верхний квадрат плеча
             float[] leftHandTopQuadFarRightPoint = new float[] { 1.35f, -0.9f, -0.25f };
             float[] leftHandTopQuadNearRightPoint = new float[] { 1.35f, -0.9f, 0.25f };
-            float[] leftHandTopQuadFarLeftPoint = new float[] { 1f, -0.9f, -0.25f };
-            float[] leftHandTopQuadNearLeftPoint = new float[] { 1f, -0.9f, 0.25f };
+            float[] leftHandTopQuadFarLeftPoint = new float[] { 0.9f, -0.9f, -0.25f };
+            float[] leftHandTopQuadNearLeftPoint = new float[] { 0.9f, -0.9f, 0.25f };
             ///Средний квадрат плеча
             float[] leftHandMiddleQuadFarRightPoint = new float[] { 1.6f, -1.2f, -0.35f };
             float[] leftHandMiddleQuadNearRightPoint = new float[] { 1.6f, -1.2f, 0.35f };
