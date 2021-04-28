@@ -20,8 +20,8 @@ namespace Lara
         }
 
         float rotateAngle = 0f;
-        float[] positionOfLaraByXY = new float[] { -2.5f, 5f, -10.0f };
-        float[] positionOfRotatingLara = new float[] { 2.5f, 5f, -10.0f };
+        float[] positionOfLaraByXY = new float[] { -2.5f, 5f, -15.0f };
+        float[] positionOfRotatingLara = new float[] { 2.5f, 5f, -15.0f };
 
         private void openGLControl1_OpenGLDraw(object sender, SharpGL.RenderEventArgs args)
         {
@@ -154,10 +154,13 @@ namespace Lara
             ///Отрисовка ног///
             ///////////////////
             ///////////////////
+            ///////////////////
             ///Правое бедро////
             float[] rightKneeFrontRight = new float[] { -0.9f, -7f, 0.25f };
             float[] rightKneeBackRight = new float[] { -0.9f, -7f, -0.25f };
-
+            float[] rightKneeFrontLeft = new float[] { -0.45f, -7f, 0.25f };
+            float[] rightKneeBackLeft = new float[] { -0.45f, -7f, -0.25f };
+            ///////////////////
             gL.Color(1f, 1f, 0f);
             gL.Begin(OpenGL.GL_QUAD_STRIP);
                     gL.Vertex(shortsRightBottomRightPoint[0] + 0.01f, shortsRightBottomRightPoint[1], shortsRightBottomRightPoint[2] - 0.01f);
@@ -165,11 +168,32 @@ namespace Lara
                     gL.Vertex(shortsAssRightBottomRightPoint[0] + 0.01f, shortsAssRightBottomRightPoint[1], shortsAssRightBottomRightPoint[2] + 0.01f);
                     gL.Vertex(rightKneeBackRight[0], rightKneeBackRight[1], rightKneeBackRight[2]);
                     gL.Vertex(shortsAssRightBottomLeftPoint[0] + 0.01f, shortsAssRightBottomLeftPoint[1], shortsAssRightBottomLeftPoint[2] + 0.01f);
-                    gL.Vertex(-0.45f, -7f, -0.25f);
+                    gL.Vertex(rightKneeBackLeft[0], rightKneeBackLeft[1], rightKneeBackLeft[2]);
                     gL.Vertex(shortsRightBottomLeftPoint[0] + 0.01f, shortsRightBottomLeftPoint[1], shortsRightBottomLeftPoint[2] + 0.01f);
-                    gL.Vertex(-0.45f, -7f, 0.25f);
+                    gL.Vertex(rightKneeFrontLeft[0], rightKneeFrontLeft[1], rightKneeFrontLeft[2]);
                     gL.Vertex(shortsRightBottomRightPoint[0] + 0.01f, shortsRightBottomRightPoint[1], shortsRightBottomRightPoint[2] - 0.01f);
                     gL.Vertex(rightKneeFrontRight[0], rightKneeFrontRight[1], rightKneeFrontRight[2]);
+            gL.End();
+            ///////////////////
+            ///////////////////
+            ///Левое бедро////
+            float[] leftKneeFrontLeft = new float[] { 0.9f, -7f, 0.25f };
+            float[] leftKneeBackLeft = new float[] { 0.9f, -7f, -0.25f };
+            float[] leftKneeFrontRight = new float[] { 0.45f, -7f, 0.25f };
+            float[] leftKneeBackRight = new float[] { 0.45f, -7f, -0.25f };
+
+            gL.Color(1f, 1f, 0f);
+            gL.Begin(OpenGL.GL_QUAD_STRIP);
+                    gL.Vertex(shortsLeftBottomLeftPoint[0] - 0.01f, shortsLeftBottomLeftPoint[1], shortsLeftBottomLeftPoint[2] - 0.01f);
+                    gL.Vertex(leftKneeFrontLeft[0], leftKneeFrontLeft[1], leftKneeFrontLeft[2]);
+                    gL.Vertex(shortsAssLeftBottomLeftPoint[0] - 0.01f, shortsAssLeftBottomLeftPoint[1], shortsAssLeftBottomLeftPoint[2] + 0.01f);
+                    gL.Vertex(leftKneeBackLeft[0], leftKneeBackLeft[1], leftKneeBackLeft[2]);
+                    gL.Vertex(shortsAssLeftBottomRightPoint[0] + 0.01f, shortsAssLeftBottomRightPoint[1], shortsAssLeftBottomRightPoint[2] + 0.01f);
+                    gL.Vertex(leftKneeBackRight[0], leftKneeBackRight[1], leftKneeBackRight[2]);
+                    gL.Vertex(shortsLeftBottomRightPoint[0] + 0.01f, shortsRightBottomLeftPoint[1], shortsRightBottomLeftPoint[2] + 0.01f);
+                    gL.Vertex(leftKneeFrontRight[0], leftKneeFrontRight[1], leftKneeFrontRight[2]);
+                    gL.Vertex(shortsLeftBottomLeftPoint[0] - 0.01f, shortsLeftBottomLeftPoint[1], shortsLeftBottomLeftPoint[2] - 0.01f);
+                    gL.Vertex(leftKneeFrontLeft[0], leftKneeFrontLeft[1], leftKneeFrontLeft[2]);
             gL.End();
 
 
