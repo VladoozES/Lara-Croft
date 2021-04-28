@@ -20,8 +20,8 @@ namespace Lara
         }
 
         float rotateAngle = 0f;
-        float[] positionOfLaraByXY = new float[] { -2.5f, 2f, -10.0f };
-        float[] positionOfRotatingLara = new float[] { 2.5f, 2f, -10.0f };
+        float[] positionOfLaraByXY = new float[] { -2.5f, 5f, -10.0f };
+        float[] positionOfRotatingLara = new float[] { 2.5f, 5f, -10.0f };
 
         private void openGLControl1_OpenGLDraw(object sender, SharpGL.RenderEventArgs args)
         {
@@ -86,21 +86,21 @@ namespace Lara
             float[] nearRightTopOfPelvis = new float[] { -0.85f, -3.4f, 0.3f }; //Ближняя точка правой стороны верхнего таза
             float[] nearLeftTopOfPelvis = new float[] { 0.85f, -3.4f, 0.3f };   //Ближняя точка левой стороны верхнего таза
             float[] shortsRightBottomRightPoint = new float[] { -1f, -5f, 0.35f }; //Правая шорта, правая точка
-            float[] shortsRightBottomLeftPoint = new float[] { -0.4f, -5f, 0.35f };   //Правая шорта, левая точка
-            float[] rightNotchBetweenLegs = new float[] { -0.3f, -4.5f, 0.3f };   //Междуножье, правая точка
-            float[] leftNotchBetweenLegs = new float[] { 0.3f, -4.5f, 0.3f };     //Междуножье, левая точка
+            float[] shortsRightBottomLeftPoint = new float[] { -0.2f, -5f, 0.35f };   //Правая шорта, левая точка
+            float[] rightNotchBetweenLegs = new float[] { -0.15f, -4.5f, 0.3f };   //Междуножье, правая точка
+            float[] leftNotchBetweenLegs = new float[] { 0.15f, -4.5f, 0.3f };     //Междуножье, левая точка
             float[] shortsLeftBottomLeftPoint = new float[] { 1f, -5f, 0.35f };    //Левая шорта,  левая точка
-            float[] shortsLeftBottomRightPoint = new float[] { 0.4f, -5f, 0.35f };    //Левая шорта, правая точка
+            float[] shortsLeftBottomRightPoint = new float[] { 0.2f, -5f, 0.35f };    //Левая шорта, правая точка
 
             ///Задняя сторона шорт
             float[] farRightTopOfPelvis = new float[] { -0.85f, -3.4f, -0.5f }; //Ближняя точка правой стороны верхнего таза
             float[] farLeftTopOfPelvis = new float[] { 0.85f, -3.4f, -0.5f };   //Ближняя точка левой стороны верхнего таза
             float[] shortsAssRightBottomRightPoint = new float[] { -1f, -5f, -0.5f }; //Правая шорта, правая точка
-            float[] shortsAssRightBottomLeftPoint = new float[] { -0.4f, -5f, -0.5f };   //Правая шорта, левая точка
-            float[] rightAssNotchBetweenLegs = new float[] { -0.3f, -4.5f, -0.4f };   //Междуножье, правая точка
-            float[] leftAssNotchBetweenLegs = new float[] { 0.3f, -4.5f, -0.4f };     //Междуножье, левая точка
+            float[] shortsAssRightBottomLeftPoint = new float[] { -0.2f, -5f, -0.5f };   //Правая шорта, левая точка
+            float[] rightAssNotchBetweenLegs = new float[] { -0.15f, -4.5f, -0.4f };   //Междуножье, правая точка
+            float[] leftAssNotchBetweenLegs = new float[] { 0.15f, -4.5f, -0.4f };     //Междуножье, левая точка
             float[] shortsAssLeftBottomLeftPoint = new float[] { 1f, -5f, -0.5f };    //Левая шорта,  левая точка
-            float[] shortsAssLeftBottomRightPoint = new float[] { 0.4f, -5f, -0.5f };    //Левая шорта, правая точка
+            float[] shortsAssLeftBottomRightPoint = new float[] { 0.2f, -5f, -0.5f };    //Левая шорта, правая точка
 
             ///Отрисовка передней стороны шорт
             gL.Begin(OpenGL.GL_POLYGON);
@@ -147,6 +147,32 @@ namespace Lara
                     gL.Vertex(farLeftTopOfPelvis[0], farLeftTopOfPelvis[1], farLeftTopOfPelvis[2]);
                     gL.Vertex(nearLeftTopOfPelvis[0], nearLeftTopOfPelvis[1], nearLeftTopOfPelvis[2]);
             gL.End();
+
+
+
+            ///////////////////
+            ///Отрисовка ног///
+            ///////////////////
+            ///////////////////
+            ///Правое бедро////
+            float[] rightKneeFrontRight = new float[] { -0.9f, -7f, 0.25f };
+            float[] rightKneeBackRight = new float[] { -0.9f, -7f, -0.25f };
+
+            gL.Color(1f, 1f, 0f);
+            gL.Begin(OpenGL.GL_QUAD_STRIP);
+                    gL.Vertex(shortsRightBottomRightPoint[0] + 0.01f, shortsRightBottomRightPoint[1], shortsRightBottomRightPoint[2] - 0.01f);
+                    gL.Vertex(rightKneeFrontRight[0], rightKneeFrontRight[1], rightKneeFrontRight[2]);
+                    gL.Vertex(shortsAssRightBottomRightPoint[0] + 0.01f, shortsAssRightBottomRightPoint[1], shortsAssRightBottomRightPoint[2] + 0.01f);
+                    gL.Vertex(rightKneeBackRight[0], rightKneeBackRight[1], rightKneeBackRight[2]);
+                    gL.Vertex(shortsAssRightBottomLeftPoint[0] + 0.01f, shortsAssRightBottomLeftPoint[1], shortsAssRightBottomLeftPoint[2] + 0.01f);
+                    gL.Vertex(-0.45f, -7f, -0.25f);
+                    gL.Vertex(shortsRightBottomLeftPoint[0] + 0.01f, shortsRightBottomLeftPoint[1], shortsRightBottomLeftPoint[2] + 0.01f);
+                    gL.Vertex(-0.45f, -7f, 0.25f);
+                    gL.Vertex(shortsRightBottomRightPoint[0] + 0.01f, shortsRightBottomRightPoint[1], shortsRightBottomRightPoint[2] - 0.01f);
+                    gL.Vertex(rightKneeFrontRight[0], rightKneeFrontRight[1], rightKneeFrontRight[2]);
+            gL.End();
+
+
         }
 
         private void DrawHemisphereByZ(int n, int k, float radius, OpenGL gL, float x, float y, float z)
