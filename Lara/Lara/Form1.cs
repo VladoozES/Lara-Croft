@@ -156,10 +156,10 @@ namespace Lara
             ///////////////////
             ///////////////////
             ///Правое бедро////
-            float[] rightKneeFrontRight = new float[] { -0.9f, -7f, 0.25f };
-            float[] rightKneeBackRight = new float[] { -0.9f, -7f, -0.25f };
-            float[] rightKneeFrontLeft = new float[] { -0.45f, -7f, 0.25f };
-            float[] rightKneeBackLeft = new float[] { -0.45f, -7f, -0.25f };
+            float[] rightKneeFrontRight = new float[] { -0.7f, -7f, 0.3f };
+            float[] rightKneeBackRight = new float[] { -0.7f, -7f, -0.1f };
+            float[] rightKneeFrontLeft = new float[] { -0.35f, -7f, 0.3f };
+            float[] rightKneeBackLeft = new float[] { -0.35f, -7f, -0.1f };
             ///////////////////
             gL.Color(1f, 1f, 0f);
             gL.Begin(OpenGL.GL_QUAD_STRIP);
@@ -176,12 +176,12 @@ namespace Lara
             gL.End();
             ///////////////////
             ///////////////////
-            ///Левое бедро////
-            float[] leftKneeFrontLeft = new float[] { 0.9f, -7f, 0.25f };
-            float[] leftKneeBackLeft = new float[] { 0.9f, -7f, -0.25f };
-            float[] leftKneeFrontRight = new float[] { 0.45f, -7f, 0.25f };
-            float[] leftKneeBackRight = new float[] { 0.45f, -7f, -0.25f };
-
+            ///Левое бедро/////
+            float[] leftKneeFrontLeft = new float[] { 0.7f, -7f, 0.3f };
+            float[] leftKneeBackLeft = new float[] { 0.7f, -7f, -0.1f };
+            float[] leftKneeFrontRight = new float[] { 0.35f, -7f, 0.3f };
+            float[] leftKneeBackRight = new float[] { 0.35f, -7f, -0.1f };
+            ///////////////////
             gL.Color(1f, 1f, 0f);
             gL.Begin(OpenGL.GL_QUAD_STRIP);
                     gL.Vertex(shortsLeftBottomLeftPoint[0] - 0.01f, shortsLeftBottomLeftPoint[1], shortsLeftBottomLeftPoint[2] - 0.01f);
@@ -194,6 +194,48 @@ namespace Lara
                     gL.Vertex(leftKneeFrontRight[0], leftKneeFrontRight[1], leftKneeFrontRight[2]);
                     gL.Vertex(shortsLeftBottomLeftPoint[0] - 0.01f, shortsLeftBottomLeftPoint[1], shortsLeftBottomLeftPoint[2] - 0.01f);
                     gL.Vertex(leftKneeFrontLeft[0], leftKneeFrontLeft[1], leftKneeFrontLeft[2]);
+            gL.End();
+            ///////////////////
+            ///////////////////
+            ///Правая голень///
+            float[] rightShinFrontRight = new float[] { -0.85f, -7.8f, 0.35f };
+            float[] rightShinBackRight = new float[] { -0.95f, -7.8f, -0.2f };
+            float[] rightShinFrontLeft = new float[] { -0.28f, -7.8f, 0.35f };
+            float[] rightShinBackLeft = new float[] { -0.23f, -7.8f, -0.2f };
+            ///////////////////
+            gL.Color(1f, 1f, 0f);
+            gL.Begin(OpenGL.GL_QUAD_STRIP);
+            gL.Vertex(rightKneeFrontRight[0], rightKneeFrontRight[1], rightKneeFrontRight[2]);
+            gL.Vertex(rightShinFrontRight[0], rightShinFrontRight[1], rightShinFrontRight[2]);
+            gL.Vertex(rightKneeBackRight[0], rightKneeBackRight[1], rightKneeBackRight[2]);
+            gL.Vertex(rightShinBackRight[0], rightShinBackRight[1], rightShinBackRight[2]);
+            gL.Vertex(rightKneeBackLeft[0], rightKneeBackLeft[1], rightKneeBackLeft[2]);
+            gL.Vertex(rightShinBackLeft[0], rightShinBackLeft[1], rightShinBackLeft[2]);
+            gL.Vertex(rightKneeFrontLeft[0], rightKneeFrontLeft[1], rightKneeFrontLeft[2]);
+            gL.Vertex(rightShinFrontLeft[0], rightShinFrontLeft[1], rightShinFrontLeft[2]);
+            gL.Vertex(rightKneeFrontRight[0], rightKneeFrontRight[1], rightKneeFrontRight[2]);
+            gL.Vertex(rightShinFrontRight[0], rightShinFrontRight[1], rightShinFrontRight[2]);
+            gL.End();
+            ///////////////////
+            ///////////////////
+            ///Левая голень///
+            float[] leftShinFrontRight = new float[] { 0.28f, -7.8f, 0.35f };
+            float[] leftShinBackRight = new float[] { 0.23f, -7.8f, -0.2f };
+            float[] leftShinFrontLeft = new float[] { 0.85f, -7.8f, 0.35f };
+            float[] leftShinBackLeft = new float[] { 0.95f, -7.8f, -0.2f };
+            ///////////////////
+            gL.Color(1f, 1f, 0f);
+            gL.Begin(OpenGL.GL_QUAD_STRIP);
+                    gL.Vertex(leftKneeFrontRight[0], leftKneeFrontRight[1], leftKneeFrontRight[2]);
+                    gL.Vertex(leftShinFrontRight[0], leftShinFrontRight[1], leftShinFrontRight[2]);
+                    gL.Vertex(leftKneeBackRight[0], leftKneeBackRight[1], leftKneeBackRight[2]);
+                    gL.Vertex(leftShinBackRight[0], leftShinBackRight[1], leftShinBackRight[2]);
+                    gL.Vertex(leftKneeBackLeft[0], leftKneeBackLeft[1], leftKneeBackLeft[2]);
+                    gL.Vertex(leftShinBackLeft[0], leftShinBackLeft[1], leftShinBackLeft[2]);
+                    gL.Vertex(leftKneeFrontLeft[0], leftKneeFrontLeft[1], leftKneeFrontLeft[2]);
+                    gL.Vertex(leftShinFrontLeft[0], leftShinFrontLeft[1], leftShinFrontLeft[2]);
+                    gL.Vertex(leftKneeFrontRight[0], leftKneeFrontRight[1], leftKneeFrontRight[2]);
+                    gL.Vertex(leftShinFrontRight[0], leftShinFrontRight[1], leftShinFrontRight[2]);
             gL.End();
 
 
