@@ -298,7 +298,6 @@ namespace Lara
                     gL.Vertex(farLeftShoulder[0], farLeftShoulder[1], farLeftShoulder[2]);
                     gL.Vertex(nearRightShoulder[0], nearRightShoulder[1], nearRightShoulder[2]);
                     gL.Vertex(nearLeftShoulder[0], nearLeftShoulder[1], nearLeftShoulder[2]);
-                    gL.Vertex(nearLeftShoulder[0], nearLeftShoulder[1], nearLeftShoulder[2]);
                     gL.Vertex(rightChest[0], rightChest[1], rightChest[2]);
                     gL.Vertex(leftChest[0], leftChest[1], leftChest[2]);
                     gL.Vertex(nearRightLowerChest[0], nearRightLowerChest[1], nearRightLowerChest[2]);
