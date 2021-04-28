@@ -86,21 +86,21 @@ namespace Lara
             float[] nearRightTopOfPelvis = new float[] { -0.85f, -3.4f, 0.3f }; //Ближняя точка правой стороны верхнего таза
             float[] nearLeftTopOfPelvis = new float[] { 0.85f, -3.4f, 0.3f };   //Ближняя точка левой стороны верхнего таза
             float[] shortsRightBottomRightPoint = new float[] { -1f, -5f, 0.35f }; //Правая шорта, правая точка
-            float[] shortsRightBottomLeftPoint = new float[] { -0.2f, -5f, 0.35f };   //Правая шорта, левая точка
+            float[] shortsRightBottomLeftPoint = new float[] { -0.05f, -5f, 0.35f };   //Правая шорта, левая точка
             float[] rightNotchBetweenLegs = new float[] { -0.15f, -4.5f, 0.3f };   //Междуножье, правая точка
             float[] leftNotchBetweenLegs = new float[] { 0.15f, -4.5f, 0.3f };     //Междуножье, левая точка
             float[] shortsLeftBottomLeftPoint = new float[] { 1f, -5f, 0.35f };    //Левая шорта,  левая точка
-            float[] shortsLeftBottomRightPoint = new float[] { 0.2f, -5f, 0.35f };    //Левая шорта, правая точка
+            float[] shortsLeftBottomRightPoint = new float[] { 0.05f, -5f, 0.35f };    //Левая шорта, правая точка
 
             ///Задняя сторона шорт
             float[] farRightTopOfPelvis = new float[] { -0.85f, -3.4f, -0.5f }; //Ближняя точка правой стороны верхнего таза
             float[] farLeftTopOfPelvis = new float[] { 0.85f, -3.4f, -0.5f };   //Ближняя точка левой стороны верхнего таза
             float[] shortsAssRightBottomRightPoint = new float[] { -1f, -5f, -0.5f }; //Правая шорта, правая точка
-            float[] shortsAssRightBottomLeftPoint = new float[] { -0.2f, -5f, -0.5f };   //Правая шорта, левая точка
+            float[] shortsAssRightBottomLeftPoint = new float[] { -0.05f, -5f, -0.5f };   //Правая шорта, левая точка
             float[] rightAssNotchBetweenLegs = new float[] { -0.15f, -4.5f, -0.4f };   //Междуножье, правая точка
             float[] leftAssNotchBetweenLegs = new float[] { 0.15f, -4.5f, -0.4f };     //Междуножье, левая точка
             float[] shortsAssLeftBottomLeftPoint = new float[] { 1f, -5f, -0.5f };    //Левая шорта,  левая точка
-            float[] shortsAssLeftBottomRightPoint = new float[] { 0.2f, -5f, -0.5f };    //Левая шорта, правая точка
+            float[] shortsAssLeftBottomRightPoint = new float[] { 0.05f, -5f, -0.5f };    //Левая шорта, правая точка
 
             ///Отрисовка передней стороны шорт
             gL.Begin(OpenGL.GL_POLYGON);
@@ -205,16 +205,16 @@ namespace Lara
             ///////////////////
             gL.Color(1f, 1f, 0f);
             gL.Begin(OpenGL.GL_QUAD_STRIP);
-            gL.Vertex(rightKneeFrontRight[0], rightKneeFrontRight[1], rightKneeFrontRight[2]);
-            gL.Vertex(rightShinFrontRight[0], rightShinFrontRight[1], rightShinFrontRight[2]);
-            gL.Vertex(rightKneeBackRight[0], rightKneeBackRight[1], rightKneeBackRight[2]);
-            gL.Vertex(rightShinBackRight[0], rightShinBackRight[1], rightShinBackRight[2]);
-            gL.Vertex(rightKneeBackLeft[0], rightKneeBackLeft[1], rightKneeBackLeft[2]);
-            gL.Vertex(rightShinBackLeft[0], rightShinBackLeft[1], rightShinBackLeft[2]);
-            gL.Vertex(rightKneeFrontLeft[0], rightKneeFrontLeft[1], rightKneeFrontLeft[2]);
-            gL.Vertex(rightShinFrontLeft[0], rightShinFrontLeft[1], rightShinFrontLeft[2]);
-            gL.Vertex(rightKneeFrontRight[0], rightKneeFrontRight[1], rightKneeFrontRight[2]);
-            gL.Vertex(rightShinFrontRight[0], rightShinFrontRight[1], rightShinFrontRight[2]);
+                    gL.Vertex(rightKneeFrontRight[0], rightKneeFrontRight[1], rightKneeFrontRight[2]);
+                    gL.Vertex(rightShinFrontRight[0], rightShinFrontRight[1], rightShinFrontRight[2]);
+                    gL.Vertex(rightKneeBackRight[0], rightKneeBackRight[1], rightKneeBackRight[2]);
+                    gL.Vertex(rightShinBackRight[0], rightShinBackRight[1], rightShinBackRight[2]);
+                    gL.Vertex(rightKneeBackLeft[0], rightKneeBackLeft[1], rightKneeBackLeft[2]);
+                    gL.Vertex(rightShinBackLeft[0], rightShinBackLeft[1], rightShinBackLeft[2]);
+                    gL.Vertex(rightKneeFrontLeft[0], rightKneeFrontLeft[1], rightKneeFrontLeft[2]);
+                    gL.Vertex(rightShinFrontLeft[0], rightShinFrontLeft[1], rightShinFrontLeft[2]);
+                    gL.Vertex(rightKneeFrontRight[0], rightKneeFrontRight[1], rightKneeFrontRight[2]);
+                    gL.Vertex(rightShinFrontRight[0], rightShinFrontRight[1], rightShinFrontRight[2]);
             gL.End();
             ///////////////////
             ///////////////////
@@ -236,6 +236,48 @@ namespace Lara
                     gL.Vertex(leftShinFrontLeft[0], leftShinFrontLeft[1], leftShinFrontLeft[2]);
                     gL.Vertex(leftKneeFrontRight[0], leftKneeFrontRight[1], leftKneeFrontRight[2]);
                     gL.Vertex(leftShinFrontRight[0], leftShinFrontRight[1], leftShinFrontRight[2]);
+            gL.End();
+            ///////////////////
+            ///////////////////
+            ///Правая лодыжка///
+            float[] rightAnkleFrontRight = new float[] { -0.8f, -9.5f, 0.35f };
+            float[] rightAnkleBackRight = new float[] { -0.8f, -9.5f, -0.2f };
+            float[] rightAnkleFrontLeft = new float[] { -0.45f, -9.5f, 0.35f };
+            float[] rightAnkleBackLeft = new float[] { -0.45f, -9.5f, -0.2f };
+            ///////////////////
+            gL.Color(1f, 1f, 0f);
+            gL.Begin(OpenGL.GL_QUAD_STRIP);
+                    gL.Vertex(rightShinFrontRight[0], rightShinFrontRight[1], rightShinFrontRight[2]);
+                    gL.Vertex(rightAnkleFrontRight[0], rightAnkleFrontRight[1], rightAnkleFrontRight[2]);
+                    gL.Vertex(rightShinBackRight[0], rightShinBackRight[1], rightShinBackRight[2]);
+                    gL.Vertex(rightAnkleBackRight[0], rightAnkleBackRight[1], rightAnkleBackRight[2]);
+                    gL.Vertex(rightShinBackLeft[0], rightShinBackLeft[1], rightShinBackLeft[2]);
+                    gL.Vertex(rightAnkleBackLeft[0], rightAnkleBackLeft[1], rightAnkleBackLeft[2]);
+                    gL.Vertex(rightShinFrontLeft[0], rightShinFrontLeft[1], rightShinFrontLeft[2]);
+                    gL.Vertex(rightAnkleFrontLeft[0], rightAnkleFrontLeft[1], rightAnkleFrontLeft[2]);
+                    gL.Vertex(rightShinFrontRight[0], rightShinFrontRight[1], rightShinFrontRight[2]);
+                    gL.Vertex(rightAnkleFrontRight[0], rightAnkleFrontRight[1], rightAnkleFrontRight[2]);
+            gL.End();
+            ///////////////////
+            ///////////////////
+            ///Левая лодыжка///
+            float[] leftAnkleFrontRight = new float[] { 0.45f, -9.5f, 0.35f };
+            float[] leftAnkleBackRight = new float[] { 0.45f, -9.5f, -0.2f };
+            float[] leftAnkleFrontLeft = new float[] { 0.8f, -9.5f, 0.35f };
+            float[] leftAnkleBackLeft = new float[] { 0.8f, -9.5f, -0.2f };
+            ///////////////////
+            gL.Color(1f, 1f, 0f);
+            gL.Begin(OpenGL.GL_QUAD_STRIP);
+                    gL.Vertex(leftShinFrontRight[0], leftShinFrontRight[1], leftShinFrontRight[2]);
+                    gL.Vertex(leftAnkleFrontRight[0], leftAnkleFrontRight[1], leftAnkleFrontRight[2]);
+                    gL.Vertex(leftShinBackRight[0], leftShinBackRight[1], leftShinBackRight[2]);
+                    gL.Vertex(leftAnkleBackRight[0], leftAnkleBackRight[1], leftAnkleBackRight[2]);
+                    gL.Vertex(leftShinBackLeft[0], leftShinBackLeft[1], leftShinBackLeft[2]);
+                    gL.Vertex(leftAnkleBackLeft[0], leftAnkleBackLeft[1], leftAnkleBackLeft[2]);
+                    gL.Vertex(leftShinFrontLeft[0], leftShinFrontLeft[1], leftShinFrontLeft[2]);
+                    gL.Vertex(leftAnkleFrontLeft[0], leftAnkleFrontLeft[1], leftAnkleFrontLeft[2]);
+                    gL.Vertex(leftShinFrontRight[0], leftShinFrontRight[1], leftShinFrontRight[2]);
+                    gL.Vertex(leftAnkleFrontRight[0], leftAnkleFrontRight[1], leftAnkleFrontRight[2]);
             gL.End();
 
 
