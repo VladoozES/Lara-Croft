@@ -20,8 +20,8 @@ namespace Lara
         }
 
         float rotateAngle = 0f;
-        float[] positionOfLaraByXY = new float[] { -2.5f, 4f, -15.0f };
-        float[] positionOfRotatingLara = new float[] { 2.5f, 4f, -15.0f };
+        float[] positionOfLaraByXY = new float[] { -2.5f, 4.5f, -15.0f };
+        float[] positionOfRotatingLara = new float[] { 2.5f, 4.5f, -15.0f };
 
         private void openGLControl1_OpenGLDraw(object sender, SharpGL.RenderEventArgs args)
         {
@@ -279,8 +279,68 @@ namespace Lara
                     gL.Vertex(leftShinFrontRight[0], leftShinFrontRight[1], leftShinFrontRight[2]);
                     gL.Vertex(leftAnkleFrontRight[0], leftAnkleFrontRight[1], leftAnkleFrontRight[2]);
             gL.End();
-
-
+            ///////////////////
+            ///////////////////
+            ///Правая стопа////
+            float[] rightHeelRightSide = new float[] { -0.85f, -9.9f, -0.2f};
+            float[] rightHeelLeftSide = new float[] { -0.4f, -9.9f, -0.2f };
+            float[] rightLegFingersRightSide = new float[] { -0.8f, -9.9f, 1f };
+            float[] rightLegFingersLeftSide = new float[] { -0.45f, -9.9f, 1.1f };
+            ///////////////////
+            gL.Color(1f, 1f, 1f);
+            gL.Begin(OpenGL.GL_QUAD_STRIP); //Отрисовка стопы
+                    gL.Vertex(rightAnkleBackRight[0], rightAnkleBackRight[1], rightAnkleBackRight[2]);
+                    gL.Vertex(rightAnkleBackLeft[0], rightAnkleBackLeft[1], rightAnkleBackLeft[2]);
+                    gL.Vertex(rightHeelRightSide[0], rightHeelRightSide[1], rightHeelRightSide[2]);
+                    gL.Vertex(rightHeelLeftSide[0], rightHeelLeftSide[1], rightHeelLeftSide[2]);
+                    gL.Vertex(rightLegFingersRightSide[0], rightLegFingersRightSide[1], rightLegFingersRightSide[2]);
+                    gL.Vertex(rightLegFingersLeftSide[0], rightLegFingersLeftSide[1], rightLegFingersLeftSide[2]);
+                    gL.Vertex(rightAnkleFrontRight[0], rightAnkleFrontRight[1], rightAnkleFrontRight[2]);
+                    gL.Vertex(rightAnkleFrontLeft[0], rightAnkleFrontLeft[1], rightAnkleFrontLeft[2]);
+            gL.End();
+            gL.Begin(OpenGL.GL_POLYGON);    //Правая сторона стопы
+                    gL.Vertex(rightAnkleBackRight[0], rightAnkleBackRight[1], rightAnkleBackRight[2]);
+                    gL.Vertex(rightHeelRightSide[0], rightHeelRightSide[1], rightHeelRightSide[2]);
+                    gL.Vertex(rightLegFingersRightSide[0], rightLegFingersRightSide[1], rightLegFingersRightSide[2]);
+                    gL.Vertex(rightAnkleFrontRight[0], rightAnkleFrontRight[1], rightAnkleFrontRight[2]);
+            gL.End();
+            gL.Begin(OpenGL.GL_POLYGON);    //Левая сторона стопы
+                    gL.Vertex(rightAnkleBackLeft[0], rightAnkleBackLeft[1], rightAnkleBackLeft[2]);
+                    gL.Vertex(rightHeelLeftSide[0], rightHeelLeftSide[1], rightHeelLeftSide[2]);
+                    gL.Vertex(rightLegFingersLeftSide[0], rightLegFingersLeftSide[1], rightLegFingersLeftSide[2]);
+                    gL.Vertex(rightAnkleFrontLeft[0], rightAnkleFrontLeft[1], rightAnkleFrontLeft[2]);
+            gL.End();
+            //////////////////
+            ///////////////////
+            ///Левая стопа////
+            float[] leftHeelRightSide = new float[] { 0.4f, -9.9f, -0.2f };
+            float[] leftHeelLeftSide = new float[] { 0.85f, -9.9f, -0.2f };
+            float[] leftLegFingersRightSide = new float[] { 0.45f, -9.9f, 1.1f };
+            float[] leftLegFingersLeftSide = new float[] { 0.8f, -9.9f, 1f };
+            ///////////////////
+            gL.Color(1f, 1f, 1f);
+            gL.Begin(OpenGL.GL_QUAD_STRIP); //Отрисовка стопы
+                    gL.Vertex(leftAnkleBackRight[0], leftAnkleBackRight[1], leftAnkleBackRight[2]);
+                    gL.Vertex(leftAnkleBackLeft[0], leftAnkleBackLeft[1], leftAnkleBackLeft[2]);
+                    gL.Vertex(leftHeelRightSide[0], leftHeelRightSide[1], leftHeelRightSide[2]);
+                    gL.Vertex(leftHeelLeftSide[0], leftHeelLeftSide[1], leftHeelLeftSide[2]);
+                    gL.Vertex(leftLegFingersRightSide[0], leftLegFingersRightSide[1], leftLegFingersRightSide[2]);
+                    gL.Vertex(leftLegFingersLeftSide[0], leftLegFingersLeftSide[1], leftLegFingersLeftSide[2]);
+                    gL.Vertex(leftAnkleFrontRight[0], leftAnkleFrontRight[1], leftAnkleFrontRight[2]);
+                    gL.Vertex(leftAnkleFrontLeft[0], leftAnkleFrontLeft[1], leftAnkleFrontLeft[2]);
+            gL.End();
+            gL.Begin(OpenGL.GL_POLYGON);    //Правая сторона стопы
+                    gL.Vertex(leftAnkleBackRight[0], leftAnkleBackRight[1], leftAnkleBackRight[2]);
+                    gL.Vertex(leftHeelRightSide[0], leftHeelRightSide[1], leftHeelRightSide[2]);
+                    gL.Vertex(leftLegFingersRightSide[0], leftLegFingersRightSide[1], leftLegFingersRightSide[2]);
+                    gL.Vertex(leftAnkleFrontRight[0], leftAnkleFrontRight[1], leftAnkleFrontRight[2]);
+            gL.End();
+            gL.Begin(OpenGL.GL_POLYGON);    //Левая сторона стопы
+                    gL.Vertex(leftAnkleBackLeft[0], leftAnkleBackLeft[1], leftAnkleBackLeft[2]);
+                    gL.Vertex(leftHeelLeftSide[0], leftHeelLeftSide[1], leftHeelLeftSide[2]);
+                    gL.Vertex(leftLegFingersLeftSide[0], leftLegFingersLeftSide[1], leftLegFingersLeftSide[2]);
+                    gL.Vertex(leftAnkleFrontLeft[0], leftAnkleFrontLeft[1], leftAnkleFrontLeft[2]);
+            gL.End();
         }
 
         private void DrawHemisphereByZ(int n, int k, float radius, OpenGL gL, float x, float y, float z)
