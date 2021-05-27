@@ -14,9 +14,15 @@ namespace Lara
 {
     public partial class Form1 : Form
     {
+        public Texture texture;
+        public Bitmap faceBmp;
+        public OpenGL gL;
+
         public Form1()
         {
             InitializeComponent();
+            texture = new Texture();
+            gL = openGLControl1.OpenGL;
         }
 
         float rotateAngle = 0f;
@@ -25,11 +31,12 @@ namespace Lara
 
         private void openGLControl1_OpenGLDraw(object sender, SharpGL.RenderEventArgs args)
         {
-            OpenGL gL = openGLControl1.OpenGL;
-            gL.PolygonMode(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_LINE);
+            
+            //gL.PolygonMode(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_LINE);
             gL.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
 
-
+            faceBmp = new Bitmap(Image.FromFile("D:\\ДЗ\\(АКТУАЛЬНО) Графика\\work-number-seven\\319253a5e521da136322320fe6ce3d03_ce_960x598x0x1_cropped_960x600.jpg"));
+            texture.Create(gL, faceBmp);
             //Голова Лары по XY
             gL.LoadIdentity();
             gL.Translate(positionOfLaraByXY[0], positionOfLaraByXY[1], positionOfLaraByXY[2]);
@@ -428,10 +435,10 @@ namespace Lara
 
             gL.Color(1f, 1f, 0f);
             gL.Begin(OpenGL.GL_QUADS);  //Верхняя часть шеи
-                    gL.Vertex(farTopPointOfRightSideOfNeck[0], farTopPointOfRightSideOfNeck[1], farTopPointOfRightSideOfNeck[2]);
-                    gL.Vertex(nearTopPointOfRightSideOfNeck[0], nearTopPointOfRightSideOfNeck[1], nearTopPointOfRightSideOfNeck[2]);
-                    gL.Vertex(nearTopPointOfLeftSideOfNeck[0], nearTopPointOfLeftSideOfNeck[1], nearTopPointOfLeftSideOfNeck[2]);
-                    gL.Vertex(farTopPointOfLeftSideOfNeck[0], farTopPointOfLeftSideOfNeck[1], farTopPointOfLeftSideOfNeck[2]);
+                   gL.Vertex(farTopPointOfRightSideOfNeck[0], farTopPointOfRightSideOfNeck[1], farTopPointOfRightSideOfNeck[2]);
+                   gL.Vertex(nearTopPointOfRightSideOfNeck[0], nearTopPointOfRightSideOfNeck[1], nearTopPointOfRightSideOfNeck[2]);
+                   gL.Vertex(nearTopPointOfLeftSideOfNeck[0], nearTopPointOfLeftSideOfNeck[1], nearTopPointOfLeftSideOfNeck[2]);
+                   gL.Vertex(farTopPointOfLeftSideOfNeck[0], farTopPointOfLeftSideOfNeck[1], farTopPointOfLeftSideOfNeck[2]);
             gL.End();
             gL.Begin(OpenGL.GL_QUADS);  //Нижняя часть шеи
                     gL.Vertex(farBottomPointOfRightSideOfNeck[0], farBottomPointOfRightSideOfNeck[1], farBottomPointOfRightSideOfNeck[2]);
@@ -486,14 +493,16 @@ namespace Lara
             float[] farLeftTopOfPelvis = new float[] { 0.85f, -3.4f, -0.5f };
 
 
+            gL.Enable(OpenGL.GL_TEXTURE_2D);
+            texture.Bind(gL);
             gL.Color(0.52f, 0.8f, 0.92f);
             gL.Begin(OpenGL.GL_QUAD_STRIP); //Отрисовка передней стороны и задней
                     gL.Vertex(farRightShoulder[0], farRightShoulder[1], farRightShoulder[2]);
                     gL.Vertex(farLeftShoulder[0], farLeftShoulder[1], farLeftShoulder[2]);
-                    gL.Vertex(nearRightShoulder[0], nearRightShoulder[1], nearRightShoulder[2]);
-                    gL.Vertex(nearLeftShoulder[0], nearLeftShoulder[1], nearLeftShoulder[2]);
-                    gL.Vertex(rightChest[0], rightChest[1], rightChest[2]);
-                    gL.Vertex(leftChest[0], leftChest[1], leftChest[2]);
+                    gL.TexCoord(0, 0); gL.Vertex(nearRightShoulder[0], nearRightShoulder[1], nearRightShoulder[2]);
+                    gL.TexCoord(1, 0); gL.Vertex(nearLeftShoulder[0], nearLeftShoulder[1], nearLeftShoulder[2]);
+                    gL.TexCoord(0, 1); gL.Vertex(rightChest[0], rightChest[1], rightChest[2]);
+                    gL.TexCoord(1, 1); gL.Vertex(leftChest[0], leftChest[1], leftChest[2]);
                     gL.Vertex(nearRightLowerChest[0], nearRightLowerChest[1], nearRightLowerChest[2]);
                     gL.Vertex(nearLeftLowerChest[0], nearLeftLowerChest[1], nearLeftLowerChest[2]);
                     gL.Vertex(nearRightLowerWaist[0], nearRightLowerWaist[1], nearRightLowerWaist[2]);
@@ -509,7 +518,8 @@ namespace Lara
                     gL.Vertex(farRightShoulder[0], farRightShoulder[1], farRightShoulder[2]);
                     gL.Vertex(farLeftShoulder[0], farLeftShoulder[1], farLeftShoulder[2]);
             gL.End();
-            
+            gL.Disable(OpenGL.GL_TEXTURE_2D);
+
             gL.Begin(OpenGL.GL_TRIANGLE_STRIP); //Отрисовка правой стороны
                     gL.Vertex(nearRightShoulder[0], nearRightShoulder[1], nearRightShoulder[2]);
                     gL.Vertex(farRightShoulder[0], farRightShoulder[1], farRightShoulder[2]);
@@ -811,10 +821,10 @@ namespace Lara
             //Отрисовка лица
             gL.Color(1f, 1f, 0f);
             gL.Begin(OpenGL.GL_QUADS);  // Деталь 1
-                    gL.Vertex(rightCheeckFarPoint[0], rightCheeckFarPoint[1], rightCheeckFarPoint[2]);
-                    gL.Vertex(rightFarLowerCheek[0], rightFarLowerCheek[1], rightFarLowerCheek[2]);
-                    gL.Vertex(rightChin[0], rightChin[1], rightChin[2]);
-                    gL.Vertex(rightCheeckNearPoint[0], rightCheeckNearPoint[1], rightCheeckNearPoint[2]);
+                   gL.Vertex(rightCheeckFarPoint[0], rightCheeckFarPoint[1], rightCheeckFarPoint[2]);
+                   gL.Vertex(rightFarLowerCheek[0], rightFarLowerCheek[1], rightFarLowerCheek[2]);
+                   gL.Vertex(rightChin[0], rightChin[1], rightChin[2]);
+                   gL.Vertex(rightCheeckNearPoint[0], rightCheeckNearPoint[1], rightCheeckNearPoint[2]);
             gL.End();
             gL.Begin(OpenGL.GL_QUADS);  // Зеркало деталь 1
                     gL.Vertex(leftCheeckFarPoint[0], leftCheeckFarPoint[1], leftCheeckFarPoint[2]);
